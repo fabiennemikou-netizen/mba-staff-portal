@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBA Staff Resources</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  :root {
+    --navy: #0C2D4E; --navy-mid: #0C447C; --navy-light: #E6F1FB;
+    --gold: #B07D2A; --gold-light: #FBF5E8; --gold-border: #E8D5A3;
+    --teal: #1D9E75; --teal-light: #E1F5EE;
+    --slate: #4A5568; --slate-light: #F1F3F6;
+    --border: #E2E8F0; --border-strong: #CBD5E0;
+    --bg: #F4F6F9; --white: #FFFFFF;
+    --text: #1A202C; --text-secondary: #4A5568; --text-muted: #718096;
+    --red: #C53030; --red-light: #FFF5F5;
+    --sidebar-w: 240px; --header-h: 60px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: var(--header-h); background: var(--navy); display: flex; align-items: center; padding: 0 1.5rem 0 0; z-index: 200; border-bottom: 2px solid var(--gold); }
+  .topbar-logo { width: var(--sidebar-w); display: flex; align-items: center; gap: 10px; padding: 0 1.5rem; flex-shrink: 0; border-right: 1px solid rgba(255,255,255,0.1); height: 100%; }
+  .logo-mark { width: 32px; height: 32px; background: var(--gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--white); font-family: 'DM Serif Display', serif; }
+  .logo-name { font-size: 13px; font-weight: 600; color: var(--white); line-height: 1; }
+  .logo-sub { font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+  .topbar-center { flex: 1; padding-left: 1.5rem; font-size: 13px; color: rgba(255,255,255,0.5); }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .topbar-tag { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; padding: 3px 8px; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 0.04em; }
+  .admin-btn { display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 5px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); transition: all 0.15s; }
+  .admin-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+  .admin-btn.active { background: var(--gold); border-color: var(--gold); color: #fff; }
+  .admin-btn i { font-size: 14px; }
+
+  .layout { display: flex; margin-top: var(--header-h); min-height: calc(100vh - var(--header-h)); }
+
+  .sidebar { width: var(--sidebar-w); background: var(--white); border-right: 1px solid var(--border); position: fixed; top: var(--header-h); left: 0; bottom: 0; overflow-y: auto; display: flex; flex-direction: column; z-index: 100; }
+  .sidebar-section { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .sidebar-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 0 1.25rem 0.5rem; }
+  .sidebar-link { display: flex; align-items: center; gap: 9px; padding: 7px 1.25rem; font-size: 13px; color: var(--text-secondary); cursor: pointer; border-left: 3px solid transparent; transition: all 0.15s; text-decoration: none; }
+  .sidebar-link:hover { background: var(--slate-light); color: var(--text); }
+  .sidebar-link.active { background: var(--navy-light); color: var(--navy-mid); border-left-color: var(--navy-mid); font-weight: 500; }
+  .sidebar-link i { font-size: 15px; flex-shrink: 0; }
+  .badge { margin-left: auto; font-size: 10px; background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold-border); border-radius: 3px; padding: 1px 5px; font-weight: 500; }
+  .sidebar-footer { margin-top: auto; padding: 1rem 1.25rem; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); line-height: 1.5; }
+
+  .main { margin-left: var(--sidebar-w); flex: 1; padding: 2rem 2.5rem; max-width: 960px; }
+  .page-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .page-eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 6px; }
+  .page-title { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--navy); line-height: 1.2; margin-bottom: 6px; }
+  .page-desc { font-size: 13px; color: var(--text-muted); max-width: 560px; line-height: 1.6; }
+
+  .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 12px; margin-top: 2rem; display: flex; align-items: center; gap: 8px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 2rem; }
+  .stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--navy); line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .notice { background: var(--gold-light); border: 1px solid var(--gold-border); border-radius: 8px; padding: 12px 16px; display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.5rem; }
+  .notice i { color: var(--gold); font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  .cards-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .resource-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.15s, border-color 0.15s; }
+  .resource-card:hover { box-shadow: 0 4px 16px rgba(12,44,78,0.08); border-color: var(--border-strong); }
+  .card-accent { height: 4px; background: var(--navy-mid); }
+  .card-accent.gold { background: var(--gold); }
+  .card-accent.teal { background: var(--teal); }
+  .card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .card-icon-row { display: flex; align-items: flex-start; justify-content: space-between; }
+  .card-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .card-icon.navy { background: var(--navy-light); color: var(--navy-mid); }
+  .card-icon.gold { background: var(--gold-light); color: var(--gold); }
+  .card-icon.teal { background: var(--teal-light); color: var(--teal); }
+  .card-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 7px; border-radius: 4px; border: 1px solid; }
+  .card-tag.current { background: var(--teal-light); color: var(--teal); border-color: #A7DFD0; }
+  .card-tag.upcoming { background: var(--navy-light); color: var(--navy-mid); border-color: #BDD5EE; }
+  .card-tag.coming-soon { background: var(--slate-light); color: var(--slate); border-color: var(--border-strong); }
+  .card-title { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; flex: 1; }
+  .card-meta { display: flex; align-items: center; gap: 12px; font-size: 11px; color: var(--text-muted); padding-top: 8px; border-top: 1px solid var(--border); margin-top: 4px; flex-wrap: wrap; }
+  .card-meta i { font-size: 13px; }
+  .card-actions { display: flex; gap: 8px; padding: 0 1.25rem 1.25rem; flex-wrap: wrap; }
+  .btn { display: flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid; text-decoration: none; transition: all 0.15s; background: none; }
+  .btn i { font-size: 14px; }
+  .btn-primary { background: var(--navy-mid); color: var(--white); border-color: var(--navy-mid); }
+  .btn-primary:hover { background: var(--navy); border-color: var(--navy); }
+  .btn-secondary { background: var(--white); color: var(--text-secondary); border-color: var(--border-strong); }
+  .btn-secondary:hover { background: var(--slate-light); }
+  .btn-danger { background: var(--red-light); color: var(--red); border-color: #FED7D7; }
+  .btn-danger:hover { background: #FED7D7; }
+  .btn-edit { background: var(--gold-light); color: var(--gold); border-color: var(--gold-border); }
+  .btn-edit:hover { background: var(--gold-border); }
+  .btn-green { background: var(--teal-light); color: var(--teal); border-color: #A7DFD0; }
+  .btn-green:hover { background: #A7DFD0; }
+
+  .coming-soon-card { background: var(--white); border: 1px dashed var(--border-strong); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; min-height: 160px; }
+  .coming-soon-card i { font-size: 28px; color: var(--border-strong); }
+  .coming-soon-card .cs-title { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+  .coming-soon-card .cs-desc { font-size: 12px; color: var(--text-muted); max-width: 220px; line-height: 1.5; }
+
+  /* ── ADMIN PANEL ── */
+  .admin-bar { display: none; background: #FFFBF0; border-bottom: 2px solid var(--gold); padding: 1.25rem 2rem 1.25rem calc(var(--sidebar-w) + 2rem); position: sticky; top: var(--header-h); z-index: 90; }
+  .admin-bar.open { display: block; }
+  .admin-bar-inner { max-width: calc(960px - var(--sidebar-w)); }
+  .admin-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+  .admin-header i { color: var(--gold); font-size: 20px; }
+  .admin-header h2 { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .admin-header p { font-size: 12px; color: var(--text-muted); }
+
+  /* JSON EDITOR */
+  .json-editor-wrap { background: var(--white); border: 1px solid var(--gold-border); border-radius: 10px; overflow: hidden; }
+  .json-editor-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--slate-light); }
+  .json-editor-title { font-size: 12px; font-weight: 600; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+  .json-editor-title i { font-size: 15px; }
+  .json-editor-actions { display: flex; gap: 8px; }
+  textarea#jsonEditor { width: 100%; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6; color: var(--text); border: none; padding: 1rem; min-height: 280px; resize: vertical; outline: none; background: var(--white); }
+  .json-error { font-size: 12px; color: var(--red); padding: 6px 14px; display: none; background: var(--red-light); border-top: 1px solid #FED7D7; }
+
+  /* ── FORM ── */
+  .add-form-wrap { background: var(--white); border: 1px solid var(--gold-border); border-radius: 10px; padding: 1.25rem; margin-top: 12px; }
+  .form-title { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .form-group { display: flex; flex-direction: column; gap: 4px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); }
+  .form-input, .form-select, .form-textarea { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--bg); border: 1px solid var(--border-strong); border-radius: 6px; padding: 7px 10px; width: 100%; transition: border-color 0.15s; }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--navy-mid); background: var(--white); }
+  .form-textarea { resize: vertical; min-height: 60px; }
+  .form-actions { display: flex; gap: 8px; }
+
+  /* ── MODAL ── */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(12,29,78,0.5); z-index: 500; align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--white); border-radius: 12px; padding: 2rem; width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+  .modal h3 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 6px; }
+  .modal p { font-size: 13px; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .modal-input { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text); border: 1px solid var(--border-strong); border-radius: 6px; padding: 9px 12px; width: 100%; margin-bottom: 8px; }
+  .modal-input:focus { outline: none; border-color: var(--navy-mid); }
+  .modal-actions { display: flex; gap: 8px; }
+  .modal-error { font-size: 12px; color: var(--red); margin-bottom: 8px; display: none; }
+
+  /* ── TOAST ── */
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 13px; display: flex; align-items: center; gap: 8px; z-index: 999; transform: translateY(80px); opacity: 0; transition: all 0.3s; pointer-events: none; }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast i { font-size: 16px; color: var(--teal); }
+
+  /* ── DOWNLOAD INSTRUCTIONS ── */
+  .instructions { background: var(--navy-light); border: 1px solid #BDD5EE; border-radius: 8px; padding: 1rem 1.25rem; margin-top: 12px; font-size: 12px; color: var(--navy-mid); line-height: 1.7; }
+  .instructions strong { font-weight: 600; }
+  .instructions ol { padding-left: 1.25rem; margin-top: 6px; }
+
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 1.25rem; }
+    .admin-bar { padding-left: 1.25rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2,1fr); }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD MODAL -->
+<div class="modal-overlay" id="pwModal">
+  <div class="modal">
+    <h3>Admin access</h3>
+    <p>Enter the admin password to manage documents.</p>
+    <input class="modal-input" type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
+    <div class="modal-error" id="pwError">Incorrect password. Please try again.</div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="checkPw()"><i class="ti ti-lock-open"></i> Enter</button>
+      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="ti ti-check"></i><span id="toastMsg">Saved</span></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-mark">M</div>
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <div class="logo-name">Bright Academy</div>
+      <div class="logo-sub">Staff Portal</div>
+    </div>
+  </div>
+  <div class="topbar-center">Staff Resources &amp; Documents</div>
+  <div class="topbar-right">
+    <div class="topbar-tag">Teaching &amp; TA Staff</div>
+    <div class="topbar-tag">2026–2027</div>
+    <button class="admin-btn" id="adminToggle" onclick="toggleAdmin()"><i class="ti ti-settings"></i> Manage</button>
+  </div>
+</div>
+
+<!-- ADMIN BAR -->
+<div class="admin-bar" id="adminBar">
+  <div class="admin-bar-inner">
+    <div class="admin-header">
+      <i class="ti ti-settings"></i>
+      <div>
+        <h2>Document Manager</h2>
+        <p>Add or remove documents below. When done, click <strong>Download updated file</strong> and re-upload to Netlify.</p>
+      </div>
+      <button class="btn btn-primary" onclick="downloadJson()" style="margin-left:auto;white-space:nowrap"><i class="ti ti-download"></i> Download updated file</button>
+    </div>
+
+    <!-- STEPS -->
+    <div class="instructions" style="margin-bottom:12px">
+      <strong>3 steps to publish changes:</strong> &nbsp;
+      1. Add or remove documents below &nbsp;→&nbsp;
+      2. Click <strong>Download updated file</strong> &nbsp;→&nbsp;
+      3. Drag your whole folder into <strong>Netlify</strong>. Done ✓
+    </div>
+
+    <!-- ADD FORM -->
+    <div class="add-form-wrap">
+      <div class="form-title"><i class="ti ti-plus"></i> Add a new document</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Title</label>
+          <input class="form-input" id="f-title" placeholder="Staff Calendar 2027–2028">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Section</label>
+          <select class="form-select" id="f-section">
+            <option value="calendars">Calendars</option>
+            <option value="summaries">Year Summaries</option>
+            <option value="events">Events &amp; Ceremonies</option>
+            <option value="coming-soon">Coming Soon</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="f-desc" placeholder="Short description..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">File name (e.g. MBA_Doc.html)</label>
+          <input class="form-input" id="f-file" placeholder="MBA_Document.html">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tag label</label>
+          <input class="form-input" id="f-tag" placeholder="2027–28">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tag style</label>
+          <select class="form-select" id="f-tagstyle">
+            <option value="upcoming">Upcoming (blue)</option>
+            <option value="current">Current (green)</option>
+            <option value="coming-soon">Coming soon (grey)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Accent colour</label>
+          <select class="form-select" id="f-accent">
+            <option value="navy">Navy</option>
+            <option value="gold">Gold</option>
+            <option value="teal">Teal</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Meta detail (optional)</label>
+          <input class="form-input" id="f-meta" placeholder="Aug 17, 2027 – Aug 23, 2028">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="quickAdd()"><i class="ti ti-plus"></i> Add document</button>
+        <button class="btn btn-secondary" onclick="resetForm()"><i class="ti ti-x"></i> Clear</button>
+      </div>
+    </div>
+
+    <!-- hidden json editor still needed for downloadJson() -->
+    <textarea id="jsonEditor" style="display:none" spellcheck="false"></textarea>
+    <div class="json-error" id="jsonError" style="display:none"></div>
+
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Current year</div>
+      <a class="sidebar-link active" href="#calendars"><i class="ti ti-calendar"></i> Calendars</a>
+      <a class="sidebar-link" href="#summaries"><i class="ti ti-clipboard-list"></i> Year summaries</a>
+      <a class="sidebar-link" href="#events"><i class="ti ti-confetti"></i> Events &amp; ceremonies</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Coming soon</div>
+      <a class="sidebar-link" href="#coming-soon"><i class="ti ti-book"></i> Parent education <span class="badge">Soon</span></a>
+      <a class="sidebar-link" href="#coming-soon"><i class="ti ti-users"></i> School events <span class="badge">Soon</span></a>
+      <a class="sidebar-link" href="#coming-soon"><i class="ti ti-file-text"></i> Policies &amp; guides <span class="badge">Soon</span></a>
+    </div>
+    <div class="sidebar-footer">
+      <div style="font-weight:500;color:var(--text-secondary);margin-bottom:4px">Montessori Bright Academy</div>
+      Avenida Gago Coutinho · Lisbon<br>
+      For internal team use only.
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-header">
+      <div class="page-eyebrow">Staff Portal</div>
+      <h1 class="page-title">Resources &amp; Documents</h1>
+      <p class="page-desc">Your central reference for calendars, year summaries, and key documents. For teaching and teaching assistant staff. Administration, kitchen, and facilities colleagues have a separate version.</p>
+    </div>
+
+    <div class="notice">
+      <i class="ti ti-info-circle"></i>
+      <div>Additional dates — including parent education sessions and school events — will be added over the summer. Everything will be in place before we return in August.</div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num">34</div><div class="stat-label">Weeks with children</div></div>
+      <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Vacation weeks</div></div>
+      <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Public holidays</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Terms</div></div>
+    </div>
+
+    <div id="section-calendars">
+      <div class="section-title" id="calendars">Calendars</div>
+      <div class="cards-grid" id="grid-calendars"></div>
+    </div>
+    <div id="section-summaries">
+      <div class="section-title" id="summaries">Year Summaries</div>
+      <div class="cards-grid" id="grid-summaries"></div>
+    </div>
+    <div id="section-events">
+      <div class="section-title" id="events">Events &amp; Ceremonies</div>
+      <div class="cards-grid" id="grid-events"></div>
+    </div>
+    <div id="section-coming-soon">
+      <div class="section-title" id="coming-soon">Coming this summer</div>
+      <div class="cards-grid" id="grid-coming-soon"></div>
+    </div>
+    <div style="height:3rem"></div>
+  </main>
+</div>
+
+<script>
+const ADMIN_PASSWORD = 'mba2026';
+let docs = [];
+let adminOpen = false;
+
+// ── LOAD DOCS from documents.json ──
+async function loadDocs() {
+  try {
+    const res = await fetch('documents.json?v=' + Date.now());
+    if (!res.ok) throw new Error('not found');
+    docs = await res.json();
+  } catch(e) {
+    // Fallback if no documents.json yet
+    docs = [
+      { id:1, section:'calendars', title:'Staff Calendar 2026–2027', desc:'Full academic year at a glance — term dates, school breaks, public holidays, staff days, parent-teacher conferences, and summer vacation.', file:'MBA_Staff_Calendar_2026_2027.html', tag:'2026–27', tagStyle:'upcoming', accent:'gold', meta:'Aug 17, 2026 – Aug 23, 2027' },
+      { id:2, section:'calendars', title:'End-of-Year Calendar 2025–2026', desc:'Detailed day-by-day view of June 18 – August 1, 2026. Farewell parties, graduation, staff inset week, and summer vacation schedule.', file:'MBA_EndOfYear_Calendar_2026.html', tag:'2025–26', tagStyle:'current', accent:'navy', meta:'Jun 18 – Aug 1, 2026' },
+      { id:3, section:'summaries', title:'Staff Year Summary 2026–2027', desc:'Working weeks, vacation entitlement, public holidays, parent-teacher conference dates, and all key milestones for the year ahead.', file:'MBA_Staff_Year_Summary_2026_2027.html', tag:'2026–27', tagStyle:'upcoming', accent:'gold', meta:'12 vacation weeks · 34 weeks with children' },
+      { id:4, section:'summaries', title:'Staff Year Summary 2025–2026', desc:'A complete overview of the current academic year — school breaks, vacation weeks, public holidays, and key working dates.', file:'MBA_Staff_Year_Summary_2025_2026.html', tag:'2025–26', tagStyle:'current', accent:'navy', meta:'12 vacation weeks · Ends Jul 3, 2026' },
+      { id:5, section:'events', title:'Graduation Run-of-Show 2026', desc:'Staff guide for the graduation ceremony — positions, graduate gifts, ceremony timeline, and team reminders.', file:'MBA_Graduation_2026.html', tag:'Jun 26, 2026', tagStyle:'current', accent:'teal', meta:'Ceremony from 4:00 PM · Rehearsal Jun 18' },
+      { id:6, section:'coming-soon', title:'Parent education sessions', desc:'Dates and formats to be confirmed. Will be added before August.', file:'', tag:'Soon', tagStyle:'coming-soon', accent:'navy', meta:'' },
+      { id:7, section:'coming-soon', title:'School events 2026–27', desc:'Open afternoons, Forest Fridays, and community events calendar.', file:'', tag:'Soon', tagStyle:'coming-soon', accent:'navy', meta:'' },
+    ];
+  }
+  render();
+  syncJsonEditor();
+}
+
+// ── RENDER ──
+const SECTIONS = ['calendars','summaries','events','coming-soon'];
+
+function render() {
+  SECTIONS.forEach(sec => {
+    const grid = document.getElementById('grid-' + sec);
+    const secDocs = docs.filter(d => d.section === sec);
+    grid.innerHTML = '';
+    secDocs.forEach(doc => {
+      grid.innerHTML += (doc.section === 'coming-soon' && !doc.file) ? renderComingSoon(doc) : renderCard(doc);
+    });
+    if (secDocs.length === 0) {
+      grid.innerHTML = `<div class="coming-soon-card"><i class="ti ti-folder-open"></i><div class="cs-title">No documents yet</div><div class="cs-desc">Add documents using the admin panel above.</div></div>`;
+    }
+    const wrapper = document.getElementById('section-' + sec);
+    if (wrapper) wrapper.style.display = (secDocs.length === 0 && !adminOpen) ? 'none' : 'block';
+  });
+}
+
+function renderCard(doc) {
+  const adminBtns = adminOpen ? `
+    <button class="btn btn-danger" onclick="removeDoc(${doc.id})"><i class="ti ti-trash"></i> Remove</button>` : '';
+  const viewBtns = doc.file ? `
+    <a href="${doc.file}" target="_blank" class="btn btn-primary"><i class="ti ti-eye"></i> View</a>
+    <a href="${doc.file}" download class="btn btn-secondary"><i class="ti ti-download"></i> Download</a>` : '';
+  const meta = doc.meta ? `<div class="card-meta"><span><i class="ti ti-clock"></i> ${doc.meta}</span></div>` : '';
+  return `
+    <div class="resource-card">
+      <div class="card-accent ${doc.accent}"></div>
+      <div class="card-body">
+        <div class="card-icon-row">
+          <div class="card-icon ${doc.accent}"><i class="ti ti-file-text"></i></div>
+          <span class="card-tag ${doc.tagStyle}">${doc.tag}</span>
+        </div>
+        <div class="card-title">${doc.title}</div>
+        <div class="card-desc">${doc.desc}</div>
+        ${meta}
+      </div>
+      <div class="card-actions">${viewBtns}${adminBtns}</div>
+    </div>`;
+}
+
+function renderComingSoon(doc) {
+  const adminBtns = adminOpen ? `<div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn-danger" onclick="removeDoc(${doc.id})"><i class="ti ti-trash"></i> Remove</button></div>` : '';
+  return `
+    <div class="coming-soon-card">
+      <i class="ti ti-clock"></i>
+      <div class="cs-title">${doc.title}</div>
+      <div class="cs-desc">${doc.desc}</div>
+      ${adminBtns}
+    </div>`;
+}
+
+// ── ADMIN ──
+function toggleAdmin() {
+  if (!adminOpen) {
+    document.getElementById('pwModal').classList.add('open');
+    setTimeout(() => document.getElementById('pwInput').focus(), 100);
+  } else {
+    adminOpen = false;
+    document.getElementById('adminBar').classList.remove('open');
+    document.getElementById('adminToggle').classList.remove('active');
+    render();
+  }
+}
+
+function checkPw() {
+  const val = document.getElementById('pwInput').value;
+  if (val === ADMIN_PASSWORD) {
+    closeModal();
+    adminOpen = true;
+    document.getElementById('adminBar').classList.add('open');
+    document.getElementById('adminToggle').classList.add('active');
+    syncJsonEditor();
+    render();
+  } else {
+    document.getElementById('pwError').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
+  }
+}
+
+function closeModal() {
+  document.getElementById('pwModal').classList.remove('open');
+  document.getElementById('pwError').style.display = 'none';
+  document.getElementById('pwInput').value = '';
+}
+
+// ── JSON EDITOR ──
+function syncJsonEditor() {
+  document.getElementById('jsonEditor').value = JSON.stringify(docs, null, 2);
+}
+
+function applyJson() {
+  const raw = document.getElementById('jsonEditor').value;
+  const errEl = document.getElementById('jsonError');
+  try {
+    docs = JSON.parse(raw);
+    errEl.style.display = 'none';
+    render();
+    showToast('Preview updated');
+  } catch(e) {
+    errEl.textContent = 'Invalid JSON: ' + e.message;
+    errEl.style.display = 'block';
+  }
+}
+
+function downloadJson() {
+  applyJson();
+  const raw = document.getElementById('jsonEditor').value;
+  try {
+    JSON.parse(raw); // validate
+    const blob = new Blob([raw], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'documents.json';
+    a.click();
+    showToast('documents.json downloaded — upload to Netlify to publish');
+  } catch(e) {
+    document.getElementById('jsonError').textContent = 'Fix JSON errors before downloading.';
+    document.getElementById('jsonError').style.display = 'block';
+  }
+}
+
+// ── QUICK ADD ──
+function quickAdd() {
+  const title = document.getElementById('f-title').value.trim();
+  if (!title) { alert('Please enter a document title.'); return; }
+  const maxId = docs.length ? Math.max(...docs.map(d=>d.id||0)) : 0;
+  docs.push({
+    id: maxId + 1,
+    section:  document.getElementById('f-section').value,
+    title,
+    desc:     document.getElementById('f-desc').value.trim(),
+    file:     document.getElementById('f-file').value.trim(),
+    tag:      document.getElementById('f-tag').value.trim() || 'New',
+    tagStyle: document.getElementById('f-tagstyle').value,
+    accent:   document.getElementById('f-accent').value,
+    meta:     document.getElementById('f-meta').value.trim(),
+  });
+  syncJsonEditor();
+  render();
+  resetForm();
+  showToast('Added — download JSON to publish');
+}
+
+function removeDoc(id) {
+  if (!confirm('Remove this document from the portal?')) return;
+  docs = docs.filter(d => d.id !== id);
+  syncJsonEditor();
+  render();
+  showToast('Removed — download JSON to publish');
+}
+
+function resetForm() {
+  ['f-title','f-desc','f-file','f-tag','f-meta'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-section').value = 'calendars';
+  document.getElementById('f-tagstyle').value = 'upcoming';
+  document.getElementById('f-accent').value = 'navy';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+loadDocs();
+</script>
+</body>
+</html>

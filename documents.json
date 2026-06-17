@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "section": "calendars",
+    "title": "Staff Calendar 2026–2027",
+    "desc": "Full academic year at a glance — term dates, school breaks, public holidays, staff days, parent-teacher conferences, and summer vacation.",
+    "file": "MBA_Staff_Calendar_2026_2027.html",
+    "tag": "2026–27",
+    "tagStyle": "upcoming",
+    "accent": "gold",
+    "meta": "Aug 17, 2026 – Aug 23, 2027"
+  },
+  {
+    "id": 2,
+    "section": "calendars",
+    "title": "End-of-Year Calendar 2025–2026",
+    "desc": "Detailed day-by-day view of June 18 – August 1, 2026. Farewell parties, graduation, staff inset week, and summer vacation schedule.",
+    "file": "MBA_EndOfYear_Calendar_2026.html",
+    "tag": "2025–26",
+    "tagStyle": "current",
+    "accent": "navy",
+    "meta": "Jun 18 – Aug 1, 2026"
+  },
+  {
+    "id": 3,
+    "section": "summaries",
+    "title": "Staff Year Summary 2026–2027",
+    "desc": "Working weeks, vacation entitlement, public holidays, parent-teacher conference dates, and all key milestones for the year ahead.",
+    "file": "MBA_Staff_Year_Summary_2026_2027.html",
+    "tag": "2026–27",
+    "tagStyle": "upcoming",
+    "accent": "gold",
+    "meta": "12 vacation weeks · 34 weeks with children"
+  },
+  {
+    "id": 4,
+    "section": "summaries",
+    "title": "Staff Year Summary 2025–2026",
+    "desc": "A complete overview of the current academic year — school breaks, vacation weeks, public holidays, and key working dates.",
+    "file": "MBA_Staff_Year_Summary_2025_2026.html",
+    "tag": "2025–26",
+    "tagStyle": "current",
+    "accent": "navy",
+    "meta": "12 vacation weeks · Ends Jul 3, 2026"
+  },
+  {
+    "id": 5,
+    "section": "events",
+    "title": "Graduation Run-of-Show 2026",
+    "desc": "Staff guide for the graduation ceremony — positions, graduate gifts, ceremony timeline, and team reminders. Read before the rehearsal on June 18.",
+    "file": "MBA_Graduation_2026.html",
+    "tag": "Jun 26, 2026",
+    "tagStyle": "current",
+    "accent": "teal",
+    "meta": "Ceremony from 4:00 PM · Rehearsal Jun 18"
+  },
+  {
+    "id": 6,
+    "section": "coming-soon",
+    "title": "Parent education sessions",
+    "desc": "Dates and formats to be confirmed. Will be added before August.",
+    "file": "",
+    "tag": "Soon",
+    "tagStyle": "coming-soon",
+    "accent": "navy",
+    "meta": ""
+  },
+  {
+    "id": 7,
+    "section": "coming-soon",
+    "title": "School events 2026–27",
+    "desc": "Open afternoons, Forest Fridays, and community events calendar.",
+    "file": "",
+    "tag": "Soon",
+    "tagStyle": "coming-soon",
+    "accent": "navy",
+    "meta": ""
+  },
+  {
+    "id": 8,
+    "section": "coming-soon",
+    "title": "Policies & staff guides",
+    "desc": "Updated handbooks, classroom protocols, and reference documents.",
+    "file": "",
+    "tag": "Soon",
+    "tagStyle": "coming-soon",
+    "accent": "navy",
+    "meta": ""
+  }
+]

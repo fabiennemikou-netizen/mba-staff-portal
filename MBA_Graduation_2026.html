@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBA Graduation Ceremony — June 26, 2026</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+
+  :root {
+    --bg: #F7F5F0;
+    --white: #FFFFFF;
+    --text: #1A1A18;
+    --text-secondary: #6B6965;
+    --text-tertiary: #9B9895;
+    --border: #E8E6E0;
+    --border-light: #F0EEE8;
+    --bg-secondary: #F2F0EB;
+    --navy: #0C447C;
+    --navy-light: #E6F1FB;
+    --blue: #185FA5;
+    --blue-light: #EBF3FC;
+    --gold: #B07D2A;
+    --gold-light: #FBF5E8;
+    --green: #3B6D11;
+    --green-light: #EAF3DE;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 2.5rem 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(160deg, #F7F5F0 0%, #EBF3FC 100%);
+  }
+
+  .hero-icon {
+    font-size: 40px;
+    margin-bottom: 0.75rem;
+    color: var(--navy);
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .hero .subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .hero .date {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* ── BODY PADDING ── */
+  .body { padding: 1.75rem 1.75rem; display: flex; flex-direction: column; gap: 2rem; }
+
+  /* ── REHEARSAL BANNER ── */
+  .rehearsal-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--blue-light);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .rehearsal-banner i { color: var(--blue); font-size: 18px; flex-shrink: 0; }
+
+  /* ── SECTION ── */
+  .section { display: flex; flex-direction: column; gap: 12px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    border-bottom: 0.5px solid var(--border);
+    padding-bottom: 6px;
+  }
+
+  /* ── SETUP NOTES ── */
+  .setup-note {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .setup-note ul { padding-left: 1rem; display: flex; flex-direction: column; gap: 3px; }
+
+  /* ── POSITION CARDS ── */
+  .positions-grid { display: flex; flex-direction: column; gap: 8px; }
+
+  .position-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .pos-loc {
+    background: var(--bg-secondary);
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    border-right: 0.5px solid var(--border);
+  }
+
+  .pos-loc i { font-size: 15px; margin-top: 1px; flex-shrink: 0; color: var(--blue); }
+
+  .pos-detail { padding: 10px 12px; }
+  .pos-staff { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .pos-role { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+
+  /* ── GIFTS ── */
+  .gifts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .gift-card {
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gc-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .gift-card.primary .gc-title { color: var(--blue); }
+  .gift-card.upper .gc-title { color: var(--green); }
+
+  .gift-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .gift-item i { font-size: 15px; margin-top: 1px; flex-shrink: 0; }
+  .gift-item.note { color: var(--text-secondary); font-style: italic; font-size: 12px; }
+
+  /* ── TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; }
+
+  .tl-item { display: flex; gap: 0; position: relative; }
+
+  .tl-time {
+    width: 68px;
+    flex-shrink: 0;
+    padding: 12px 10px 12px 0;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    line-height: 1.3;
+  }
+
+  .tl-line {
+    width: 24px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tl-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 16px;
+    flex-shrink: 0;
+    background: var(--border);
+  }
+
+  .tl-dot.accent { background: var(--blue); width: 10px; height: 10px; margin-top: 15px; }
+  .tl-dot.gold { background: var(--gold); width: 12px; height: 12px; margin-top: 14px; }
+
+  .tl-connector { width: 1px; background: var(--border); flex: 1; }
+
+  .tl-content {
+    flex: 1;
+    padding: 10px 0 10px 12px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    border-bottom: 0.5px solid var(--border-light);
+  }
+
+  .tl-item:last-child .tl-content { border-bottom: none; }
+  .tl-content.highlight { font-weight: 500; color: var(--blue); }
+  .tl-content.party { font-weight: 600; color: var(--gold); font-size: 15px; }
+
+  .tl-content em {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 12px;
+    display: block;
+    margin-top: 3px;
+  }
+
+  /* ── REMINDERS ── */
+  .reminders { display: flex; flex-direction: column; gap: 8px; }
+
+  .reminder {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .reminder i { font-size: 16px; color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    padding: 1.25rem 1.75rem;
+    border-top: 0.5px solid var(--border);
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-icon"><i class="ti ti-school"></i></div>
+    <div class="subtitle">Staff run-of-show</div>
+    <h1>Graduation Ceremony</h1>
+    <div class="date">Friday, June 26, 2026</div>
+  </div>
+
+  <div class="body">
+
+    <!-- REHEARSAL -->
+    <div class="rehearsal-banner">
+      <i class="ti ti-calendar-event"></i>
+      <span>Rehearsal: <strong>Thursday, June 18, 2026 — 10:00 AM</strong> · Primary graduates & Elementary</span>
+    </div>
+
+    <!-- SETUP -->
+    <div class="section">
+      <div class="section-label">Stage & seating setup</div>
+      <div class="setup-note">
+        <ul>
+          <li>Parents seated on chairs on the grass</li>
+          <li>Lower Elementary children seated on the Alps patio</li>
+          <li>Additional chairs available on the patio for Upper Elementary (for later in the ceremony)</li>
+          <li>Graduates and Upper Elementary gathered under the canopy before procession</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- POSITIONS -->
+    <div class="section">
+      <div class="section-label">Staff positioning</div>
+      <div class="positions-grid">
+        <div class="position-card">
+          <div class="pos-loc"><i class="ti ti-map-pin"></i>Bottom of stairs — left</div>
+          <div class="pos-detail">
+            <div class="pos-staff">Oana & Rea</div>
+            <div class="pos-role">3 blue roses per toddler transitioning to Primary</div>
+          </div>
+        </div>
+        <div class="position-card">
+          <div class="pos-loc"><i class="ti ti-map-pin"></i>Bottom of stairs — right</div>
+          <div class="pos-detail">
+            <div class="pos-staff">Katrina & André</div>
+            <div class="pos-role">Ready to receive transitioners</div>
+          </div>
+        </div>
+        <div class="position-card">
+          <div class="pos-loc"><i class="ti ti-map-pin"></i>Alps patio</div>
+          <div class="pos-detail">
+            <div class="pos-staff">Fabienne + full team</div>
+            <div class="pos-role">Lectern · Lower Elementary seated · extra chairs for Upper Elementary</div>
+          </div>
+        </div>
+        <div class="position-card">
+          <div class="pos-loc"><i class="ti ti-map-pin"></i>Under the canopy</div>
+          <div class="pos-detail">
+            <div class="pos-staff">Graduates + Upper Elementary</div>
+            <div class="pos-role">Waiting area before procession</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GIFTS -->
+    <div class="section">
+      <div class="section-label">Graduate gifts & awards</div>
+      <div class="gifts-grid">
+        <div class="gift-card primary">
+          <div class="gc-title">Primary graduates</div>
+          <div class="gift-item"><i class="ti ti-certificate" style="color:var(--blue)"></i>Diploma — presented by Fabienne</div>
+          <div class="gift-item"><i class="ti ti-photo" style="color:var(--blue)"></i>Framed photo in graduation regalia — presented by Katrina / André</div>
+          <div class="gift-item note"><i class="ti ti-mail"></i>Graduates staying at MBA also receive a letter from the Lower Elementary children</div>
+        </div>
+        <div class="gift-card upper">
+          <div class="gc-title">Leo & Violeta</div>
+          <div class="gift-item"><i class="ti ti-certificate" style="color:var(--green)"></i>Diploma — presented by Fabienne</div>
+          <div class="gift-item"><i class="ti ti-award" style="color:var(--green)"></i>Plaque</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="section">
+      <div class="section-label">Ceremony run-of-show — from 4:00 PM</div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-time">4:00 PM</div>
+          <div class="tl-line"><div class="tl-dot accent"></div><div class="tl-connector"></div></div>
+          <div class="tl-content highlight">Ceremony opens — Fabienne speaks from the lectern</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Opening remarks: thank-yous and acknowledgement of leavers<em>No names mentioned</em></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Primary graduates wait under the canopy, accompanied by Lower Elementary children</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">At Fabienne's signal — graduates walk up the aisle hand in hand, stop at foot of stairs</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Graduates go up one by one — framed photo from Katrina/André, diploma from Fabienne<em>Graduates staying at MBA also receive a letter from the Lower Elementary children</em></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Each graduate takes their seat after receiving their awards</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Upper Elementary child delivers a few words announcing Leo and Violeta</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Leo & Violeta walk up the aisle from the canopy<em>Intentions from Upper Elementary children played over light background music</em></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Leo & Violeta receive diploma and plaque — Violeta addresses the audience</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Piano performance<em>To be confirmed — check with Fabienne</em></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">🎓 Graduate hat throw</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Photos with family in graduation robes</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+          <div class="tl-content">Designated team member collects all robes · team & parent volunteers remove chairs</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">6:30 PM</div>
+          <div class="tl-line"><div class="tl-dot gold"></div></div>
+          <div class="tl-content party">🎉 Party begins!</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- REMINDERS -->
+    <div class="section">
+      <div class="section-label">Team reminders</div>
+      <div class="reminders">
+        <div class="reminder"><i class="ti ti-alert-triangle"></i>A designated team member must ensure ALL graduation robes are collected before the party begins.</div>
+        <div class="reminder"><i class="ti ti-users"></i>Team members and parent volunteers are responsible for chair removal after photos.</div>
+        <div class="reminder"><i class="ti ti-music"></i>Piano performance slot to be confirmed — please check with Fabienne.</div>
+      </div>
+    </div>
+
+  </div><!-- end body -->
+
+  <div class="footer">Montessori Bright Academy &nbsp;·&nbsp; Graduation 2026 &nbsp;·&nbsp; For internal team use only</div>
+
+</div><!-- end page -->
+
+</body>
+</html>

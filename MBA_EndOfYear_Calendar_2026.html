@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBA End-of-Year Team Calendar — June–August 2026</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+
+  :root {
+    --bg: #F7F5F0;
+    --white: #FFFFFF;
+    --text: #1A1A18;
+    --text-secondary: #6B6965;
+    --text-tertiary: #9B9895;
+    --border: #E8E6E0;
+    --border-light: #F0EEE8;
+    --bg-secondary: #F2F0EB;
+    --navy: #0C447C;
+    --navy-light: #E6F1FB;
+    --blue: #185FA5;
+    --blue-light: #EBF3FC;
+    --gold: #B07D2A;
+    --gold-light: #FBF5E8;
+    --green: #3B6D11;
+    --green-light: #EAF3DE;
+    --orange: #D85A30;
+    --orange-light: #FAECE7;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --amber: #633806;
+    --amber-light: #FAEEDA;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 2.5rem 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(160deg, #F7F5F0 0%, #EBF3FC 100%);
+  }
+
+  .hero-icon { font-size: 40px; margin-bottom: 0.75rem; color: var(--navy); }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .hero .subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .hero .school { font-size: 13px; color: var(--text-tertiary); }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    padding: 1rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .legend-pip {
+    width: 9px; height: 9px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── BODY ── */
+  .body { padding: 1.75rem; display: flex; flex-direction: column; gap: 2rem; }
+
+  /* ── MONTH SECTION ── */
+  .month-section { display: flex; flex-direction: column; gap: 0; }
+
+  .month-header {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--navy);
+    padding: 7px 14px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  /* ── DAY ROW ── */
+  .day-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .month-section .day-row:last-child {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  .day-label {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .day-name {
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-tertiary);
+  }
+
+  .day-num {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  /* day label backgrounds */
+  .day-row.weekend .day-label { background: var(--bg-secondary); }
+  .day-row.weekend .day-num { color: var(--text-tertiary); }
+  .day-row.inset .day-label { background: var(--green-light); }
+  .day-row.vacation .day-label { background: var(--amber-light); }
+  .day-row.vacation .day-num { color: var(--amber); }
+
+  /* ── EVENTS COL ── */
+  .events-col {
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .event-pill {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 12.5px;
+    line-height: 1.4;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .event-pip {
+    width: 7px; height: 7px;
+    border-radius: 2px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .event-pill.school   { background: var(--orange-light); color: var(--orange); }
+  .event-pill.staff    { background: var(--purple-light); color: var(--purple); }
+  .event-pill.deadline { background: #E1F5EE; color: #1D9E75; font-weight: 500; }
+  .event-pill.inset    { background: var(--green-light); color: var(--green); font-weight: 500; }
+  .event-pill.vacation { background: var(--amber-light); color: var(--amber); }
+
+  .weekend-label { font-size: 11px; color: var(--text-tertiary); padding: 4px 8px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    padding: 1.25rem 1.75rem;
+    border-top: 0.5px solid var(--border);
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-icon"><i class="ti ti-calendar-event"></i></div>
+    <div class="subtitle">End-of-year team calendar</div>
+    <h1>June – August 2026</h1>
+    <div class="school">Montessori Bright Academy · Lisbon</div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-pip" style="background:var(--orange)"></div>School event</div>
+    <div class="legend-item"><div class="legend-pip" style="background:var(--purple)"></div>Staff / graduation</div>
+    <div class="legend-item"><div class="legend-pip" style="background:#1D9E75"></div>Deadline</div>
+    <div class="legend-item"><div class="legend-pip" style="background:var(--green)"></div>Staff inset week</div>
+    <div class="legend-item"><div class="legend-pip" style="background:var(--amber)"></div>Summer vacation</div>
+  </div>
+
+  <div class="body">
+
+    <!-- JUNE -->
+    <div class="month-section">
+      <div class="month-header">June 2026</div>
+
+      <div class="day-row">
+        <div class="day-label"><div class="day-name">Wed</div><div class="day-num">17</div></div>
+        <div class="events-col">
+          <div class="event-pill school"><div class="event-pip" style="background:var(--orange)"></div>Alps open afternoon</div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-label"><div class="day-name">Thu</div><div class="day-num">18</div></div>
+        <div class="events-col">
+          <div class="event-pill staff"><div class="event-pip" style="background:var(--purple)"></div>Rehearsal — graduation ceremony (Primary & Elementary) · 10:00 AM</div>
+          <div class="event-pill school"><div class="event-pip" style="background:var(--orange)"></div>Sierra farewell party + Sierra open afternoon</div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-label"><div class="day-name">Fri</div><div class="day-num">19</div></div>
+        <div class="events-col">
+          <div class="event-pill school"><div class="event-pip" style="background:var(--orange)"></div>Andes farewell party</div>
+        </div>
+      </div>
+
+      <div class="day-row weekend">
+        <div class="day-label"><div class="day-name">Sat</div><div class="day-num">20</div></div>
+        <div class="events-col"><div class="weekend-label">Weekend</div></div>
+      </div>
+
+      <div class="day-row weekend">
+        <div class="day-label"><div class="day-name">Sun</div><div class="day-num">21</div></div>
+        <div class="events-col"><div class="weekend-label">Weekend</div></div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-label"><div class="day-name">Mon</div><div class="day-num">22</div></div>
+        <div class="events-col">
+          <div class="event-pill school"><div class="event-pip" style="background:var(--orange)"></div>Sierra open afternoon</div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-label"><div class="day-name">Tue</div><div class="day-num">23</div></div>
+        <div class="events-col"></div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-label"><div class="day-name">Wed</div><div class="day-num">24</div></div>
+        <div class="events-col">
+          <div class="event-pill school"><div class="event-pip" style="background:var(--orange)"></div>Himalaya farewell party</div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-label"><div class="day-name">Thu</div><div class="day-num">25</div></div>
+        <div class="events-col">
+          <div class="event-pill school"><div class="event-pip" style="background:var(--orange)"></div>Alps farewell party + last day of school (with childcare)</div>
+          <div class="event-pill deadline"><div class="event-pip" style="background:#1D9E75"></div>Deadline: publication of all reports · 5:00 PM</div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-label"><div class="day-name">Fri</div><div class="day-num">26</div></div>
+        <div class="events-col">
+          <div class="event-pill staff"><div class="event-pip" style="background:var(--purple)"></div>Class cleaning + graduation setup · before 4:00 PM</div>
+          <div class="event-pill staff"><div class="event-pip" style="background:var(--purple)"></div>Graduation / end-of-year party · 4:00–6:30 PM</div>
+          <div class="event-pill staff"><div class="event-pip" style="background:var(--purple)"></div>Team dinner & drinks · from 6:30 PM</div>
+        </div>
+      </div>
+
+      <div class="day-row weekend">
+        <div class="day-label"><div class="day-name">Sat</div><div class="day-num">27</div></div>
+        <div class="events-col"><div class="weekend-label">Weekend</div></div>
+      </div>
+
+      <div class="day-row weekend">
+        <div class="day-label"><div class="day-name">Sun</div><div class="day-num">28</div></div>
+        <div class="events-col"><div class="weekend-label">Weekend</div></div>
+      </div>
+
+      <div class="day-row inset">
+        <div class="day-label"><div class="day-name">Mon</div><div class="day-num">29</div></div>
+        <div class="events-col">
+          <div class="event-pill inset"><div class="event-pip" style="background:var(--green)"></div>Staff inset week begins</div>
+        </div>
+      </div>
+
+      <div class="day-row inset">
+        <div class="day-label"><div class="day-name">Tue</div><div class="day-num">30</div></div>
+        <div class="events-col">
+          <div class="event-pill inset"><div class="event-pip" style="background:var(--green)"></div>Staff inset day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JULY -->
+    <div class="month-section">
+      <div class="month-header">July 2026</div>
+
+      <div class="day-row inset">
+        <div class="day-label"><div class="day-name">Wed</div><div class="day-num">1</div></div>
+        <div class="events-col">
+          <div class="event-pill inset"><div class="event-pip" style="background:var(--green)"></div>Staff inset day</div>
+        </div>
+      </div>
+
+      <div class="day-row inset">
+        <div class="day-label"><div class="day-name">Thu</div><div class="day-num">2</div></div>
+        <div class="events-col">
+          <div class="event-pill inset"><div class="event-pip" style="background:var(--green)"></div>Staff inset day</div>
+        </div>
+      </div>
+
+      <div class="day-row inset">
+        <div class="day-label"><div class="day-name">Fri</div><div class="day-num">3</div></div>
+        <div class="events-col">
+          <div class="event-pill inset"><div class="event-pip" style="background:var(--green)"></div>Last staff inset day · end of working year</div>
+        </div>
+      </div>
+
+      <div class="day-row weekend">
+        <div class="day-label"><div class="day-name">Sat</div><div class="day-num">4</div></div>
+        <div class="events-col"><div class="weekend-label">Weekend</div></div>
+      </div>
+
+      <div class="day-row weekend">
+        <div class="day-label"><div class="day-name">Sun</div><div class="day-num">5</div></div>
+        <div class="events-col"><div class="weekend-label">Weekend</div></div>
+      </div>
+
+      <div class="day-row vacation">
+        <div class="day-label"><div class="day-name">Mon</div><div class="day-num">6</div></div>
+        <div class="events-col">
+          <div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation begins</div>
+        </div>
+      </div>
+
+      <?php
+      $vac_days = [
+        ['Tue','7'],['Wed','8'],['Thu','9'],['Fri','10'],
+        ['Mon','13'],['Tue','14'],['Wed','15'],['Thu','16'],['Fri','17'],
+        ['Mon','20'],['Tue','21'],['Wed','22'],['Thu','23'],['Fri','24'],
+        ['Mon','27'],['Tue','28'],['Wed','29'],['Thu','30'],['Fri','31'],
+      ];
+      ?>
+
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Tue</div><div class="day-num">7</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Wed</div><div class="day-num">8</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Thu</div><div class="day-num">9</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Fri</div><div class="day-num">10</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row weekend"><div class="day-label"><div class="day-name">Sat</div><div class="day-num">11</div></div><div class="events-col"><div class="weekend-label">Weekend</div></div></div>
+      <div class="day-row weekend"><div class="day-label"><div class="day-name">Sun</div><div class="day-num">12</div></div><div class="events-col"><div class="weekend-label">Weekend</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Mon</div><div class="day-num">13</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Tue</div><div class="day-num">14</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Wed</div><div class="day-num">15</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Thu</div><div class="day-num">16</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Fri</div><div class="day-num">17</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row weekend"><div class="day-label"><div class="day-name">Sat</div><div class="day-num">18</div></div><div class="events-col"><div class="weekend-label">Weekend</div></div></div>
+      <div class="day-row weekend"><div class="day-label"><div class="day-name">Sun</div><div class="day-num">19</div></div><div class="events-col"><div class="weekend-label">Weekend</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Mon</div><div class="day-num">20</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Tue</div><div class="day-num">21</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Wed</div><div class="day-num">22</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Thu</div><div class="day-num">23</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Fri</div><div class="day-num">24</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row weekend"><div class="day-label"><div class="day-name">Sat</div><div class="day-num">25</div></div><div class="events-col"><div class="weekend-label">Weekend</div></div></div>
+      <div class="day-row weekend"><div class="day-label"><div class="day-name">Sun</div><div class="day-num">26</div></div><div class="events-col"><div class="weekend-label">Weekend</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Mon</div><div class="day-num">27</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Tue</div><div class="day-num">28</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Wed</div><div class="day-num">29</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Thu</div><div class="day-num">30</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+      <div class="day-row vacation"><div class="day-label"><div class="day-name">Fri</div><div class="day-num">31</div></div><div class="events-col"><div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation</div></div></div>
+    </div>
+
+    <!-- AUGUST -->
+    <div class="month-section">
+      <div class="month-header">August 2026</div>
+      <div class="day-row weekend vacation">
+        <div class="day-label"><div class="day-name">Sat</div><div class="day-num">1</div></div>
+        <div class="events-col">
+          <div class="event-pill vacation"><div class="event-pip" style="background:var(--amber)"></div>Summer vacation continues</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end body -->
+
+  <div class="footer">Montessori Bright Academy &nbsp;·&nbsp; End-of-Year Calendar 2026 &nbsp;·&nbsp; For internal team use only</div>
+
+</div>
+</body>
+</html>

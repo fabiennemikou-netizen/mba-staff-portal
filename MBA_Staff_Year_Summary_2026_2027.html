@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBA Staff Year Summary 2026–2027</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+
+  :root {
+    --navy: #0C447C;
+    --navy-light: #E6F1FB;
+    --gold: #BA7517;
+    --gold-light: #FAEEDA;
+    --gold-text: #633806;
+    --green-bg: #EAF3DE;
+    --green-text: #27500A;
+    --pink-bg: #FBEAF0;
+    --pink-text: #72243E;
+    --teal: #1D9E75;
+    --purple: #534AB7;
+    --orange: #D85A30;
+    --conf-bg: #E8E0F5;
+    --conf-text: #4A2080;
+    --report-bg: #FCE8D8;
+    --report-text: #7A2D00;
+    --closure-bg: #E6E0F8;
+    --closure-text: #3B2080;
+    --gray: #888780;
+    --grid: #E8E6E0;
+    --bg: #F7F5F0;
+    --white: #FFFFFF;
+    --text: #1A1A18;
+    --text-muted: #6B6965;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--navy);
+    padding: 2.5rem 3rem 2rem;
+  }
+
+  .year-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  header .subtitle {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+    margin-top: 4px;
+    font-weight: 300;
+  }
+
+  .contract-bar {
+    background: var(--navy-light);
+    border-bottom: 1px solid var(--grid);
+    padding: 0.75rem 3rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .contract-bar span { opacity: 0.7; font-weight: 400; margin-right: 4px; }
+
+  main {
+    padding: 2rem 3rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* ── BIG NUMBERS ROW ── */
+  .totals-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .total-card {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--grid);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .total-card .big-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--navy);
+  }
+
+  .total-card .big-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .total-card .big-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .total-card.highlight { background: var(--navy); }
+  .total-card.highlight .big-num { color: var(--white); }
+  .total-card.highlight .big-label { color: rgba(255,255,255,0.6); }
+  .total-card.highlight .big-sub { color: rgba(255,255,255,0.5); }
+
+  /* ── SECTIONS ── */
+  .section {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--grid);
+    overflow: hidden;
+  }
+
+  .section-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--grid);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .section-header .section-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    font-weight: 400;
+  }
+
+  .section-body { padding: 1.25rem 1.5rem; }
+
+  /* ── PERIOD ROWS ── */
+  .period-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--grid);
+    font-size: 0.82rem;
+  }
+
+  .period-row:last-child { border-bottom: none; }
+
+  .period-pip {
+    width: 10px; height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .period-name { flex: 1; color: var(--text); font-weight: 500; }
+  .period-dates { color: var(--text-muted); font-size: 0.75rem; flex: 1; }
+  .period-days { color: var(--text-muted); font-size: 0.75rem; width: 70px; text-align: right; }
+  .period-weeks {
+    font-weight: 600;
+    font-size: 0.85rem;
+    width: 80px;
+    text-align: right;
+    color: var(--navy);
+  }
+
+  .total-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.7rem 0 0;
+    margin-top: 4px;
+    border-top: 1.5px solid var(--navy);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .total-row .period-name { color: var(--navy); }
+  .total-row .period-weeks { font-size: 0.95rem; }
+
+  /* ── HOLIDAY LIST ── */
+  .holiday-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 24px;
+  }
+
+  .holiday-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--grid);
+  }
+
+  .holiday-item .hdate {
+    font-weight: 500;
+    color: var(--text);
+    width: 100px;
+    flex-shrink: 0;
+  }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── NOTE ── */
+  .note {
+    background: var(--navy-light);
+    border-left: 3px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    padding: 0.75rem 1rem;
+    font-size: 0.78rem;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem 3rem;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--grid);
+    background: var(--white);
+  }
+
+  @media (max-width: 800px) {
+    .totals-row { grid-template-columns: repeat(2,1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    header, main, .contract-bar { padding-left: 1.25rem; padding-right: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="year-badge">2026 – 2027</div>
+  <h1>Staff Year Summary</h1>
+  <div class="subtitle">Montessori Bright Academy · Lisbon</div>
+</header>
+
+<div class="contract-bar">
+  <div><span>Return 2026–27:</span> Monday, August 17, 2026</div>
+  <div><span>Last working day:</span> Friday, July 9, 2027</div>
+  <div><span>Return 2027–28:</span> Monday, August 23, 2027</div>
+</div>
+
+<main>
+
+  <!-- BIG NUMBERS -->
+  <div class="totals-row">
+    <div class="total-card highlight">
+      <div class="big-num">40</div>
+      <div class="big-label">Working weeks</div>
+      <div class="big-sub">199 working days total</div>
+    </div>
+    <div class="total-card">
+      <div class="big-num">34</div>
+      <div class="big-label">Weeks with children</div>
+      <div class="big-sub">170 school days</div>
+    </div>
+    <div class="total-card">
+      <div class="big-num">12</div>
+      <div class="big-label">Vacation weeks</div>
+      <div class="big-sub">60 days off</div>
+    </div>
+    <div class="total-card">
+      <div class="big-num">7</div>
+      <div class="big-label">Public holidays</div>
+      <div class="big-sub">During working period</div>
+    </div>
+  </div>
+
+  <!-- TERMS AT A GLANCE -->
+  <div class="two-col">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon" style="background:#E6F1FB">🏫</div>
+        <h2>Terms at a Glance</h2>
+      </div>
+      <div class="section-body">
+        <div class="period-row">
+          <div class="period-pip" style="background:var(--navy)"></div>
+          <div class="period-name">Term 1</div>
+          <div class="period-dates">Sep 1 – Dec 20, 2026</div>
+        </div>
+        <div class="period-row">
+          <div class="period-pip" style="background:var(--navy)"></div>
+          <div class="period-name">Term 2</div>
+          <div class="period-dates">Jan 4 – Mar 31, 2027</div>
+        </div>
+        <div class="period-row">
+          <div class="period-pip" style="background:var(--navy)"></div>
+          <div class="period-name">Term 3</div>
+          <div class="period-dates">Apr 17 – Jun 25, 2027</div>
+        </div>
+        <div class="period-row">
+          <div class="period-pip" style="background:var(--orange)"></div>
+          <div class="period-name">Last day of school</div>
+          <div class="period-dates">Jun 25, 2027 (half day)</div>
+        </div>
+        <div class="period-row">
+          <div class="period-pip" style="background:var(--purple)"></div>
+          <div class="period-name">Last staff working day</div>
+          <div class="period-dates">Jul 9, 2027</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--conf-bg)">🗣️</div>
+        <h2>Parent-Teacher Conferences</h2>
+      </div>
+      <div class="section-body">
+        <div class="period-row">
+          <div class="period-pip" style="background:var(--conf-bg);border:1px solid var(--conf-text)"></div>
+          <div class="period-name">December session</div>
+          <div class="period-dates">Dec 7–11, 2026 · 4 working days*</div>
+        </div>
+        <div class="period-row">
+          <div class="period-pip" style="background:var(--conf-bg);border:1px solid var(--conf-text)"></div>
+          <div class="period-name">March session</div>
+          <div class="period-dates">Mar 22–27, 2027 · 5 working days</div>
+        </div>
+        <div class="period-row" style="font-size:0.72rem;color:var(--text-muted);border:none;padding-top:8px">
+          * Dec 8 (Immaculate Conception) falls within this week — school closed that day.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VACATION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--gold-light)">🌴</div>
+      <h2>Vacation Weeks</h2>
+      <div class="section-meta">12 weeks total · 60 days</div>
+    </div>
+    <div class="section-body">
+      <div class="period-row">
+        <div class="period-pip" style="background:var(--gold-light);border:1px solid var(--gold)"></div>
+        <div class="period-name">Fall break</div>
+        <div class="period-dates">Oct 26–30, 2026 (Mon–Fri)</div>
+        <div class="period-days">5 days</div>
+        <div class="period-weeks">1 week</div>
+      </div>
+      <div class="period-row">
+        <div class="period-pip" style="background:var(--gold-light);border:1px solid var(--gold)"></div>
+        <div class="period-name">Winter break</div>
+        <div class="period-dates">Dec 21, 2026 – Jan 3, 2027</div>
+        <div class="period-days">10 days</div>
+        <div class="period-weeks">2 weeks</div>
+      </div>
+      <div class="period-row">
+        <div class="period-pip" style="background:var(--gold-light);border:1px solid var(--gold)"></div>
+        <div class="period-name">Carnival break</div>
+        <div class="period-dates">Feb 8–12, 2027 (Mon–Fri)</div>
+        <div class="period-days">5 days</div>
+        <div class="period-weeks">1 week</div>
+      </div>
+      <div class="period-row">
+        <div class="period-pip" style="background:var(--gold-light);border:1px solid var(--gold)"></div>
+        <div class="period-name">Spring break</div>
+        <div class="period-dates">Apr 5–16, 2027</div>
+        <div class="period-days">10 days</div>
+        <div class="period-weeks">2 weeks</div>
+      </div>
+      <div class="period-row">
+        <div class="period-pip" style="background:var(--gold-light);border:1px solid var(--gold)"></div>
+        <div class="period-name">Summer break</div>
+        <div class="period-dates">Jul 10 – Aug 22, 2027</div>
+        <div class="period-days">30 days</div>
+        <div class="period-weeks">6 weeks</div>
+      </div>
+      <div class="total-row">
+        <div style="width:10px"></div>
+        <div class="period-name">Total vacation</div>
+        <div class="period-dates"></div>
+        <div class="period-days">60 days</div>
+        <div class="period-weeks">12 weeks</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PUBLIC HOLIDAYS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--pink-bg)">🇵🇹</div>
+      <h2>Public Holidays During Working Period</h2>
+      <div class="section-meta">7 days · not counted as vacation</div>
+    </div>
+    <div class="section-body">
+      <div class="holiday-grid">
+        <div class="holiday-item"><div class="hdate">Oct 5, 2026</div><div>Republic Day (Monday)</div></div>
+        <div class="holiday-item"><div class="hdate">Nov 2, 2026</div><div>All Saints Day (Monday)</div></div>
+        <div class="holiday-item"><div class="hdate">Dec 1, 2026</div><div>Independence Day (Tuesday)</div></div>
+        <div class="holiday-item"><div class="hdate">Dec 8, 2026</div><div>Immaculate Conception (Tuesday)</div></div>
+        <div class="holiday-item"><div class="hdate">Mar 26, 2027</div><div>Good Friday</div></div>
+        <div class="holiday-item"><div class="hdate">May 27, 2027</div><div>Corpus Cristi (Thursday)</div></div>
+        <div class="holiday-item"><div class="hdate">Jun 10, 2027</div><div>Portugal Day (Wednesday)</div></div>
+      </div>
+      <div style="margin-top:12px">
+        <div class="note">Note: Jan 1 (New Year's Day), Feb 8–12 (Carnival), Apr 3 (Good Friday) and Jun 13 (Lisbon Day) fall within vacation periods or are already accounted for in school breaks.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARK ABSENT -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:#FFF3CD">📌</div>
+      <h2>Staff Notes</h2>
+    </div>
+    <div class="section-body">
+      <div class="period-row">
+        <div class="period-pip" style="background:#FFF3CD;border:1px solid #856404"></div>
+        <div class="period-name">Mark — absence</div>
+        <div class="period-dates">Sep 14–25, 2026 · 10 working days</div>
+        <div class="period-days">10 days</div>
+        <div class="period-weeks">2 weeks</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PTO NOTE -->
+  <div class="note" style="font-size:0.82rem;line-height:1.7;padding:1rem 1.25rem;background:#FFF8E1;border-left:3px solid #F9A825;">
+    <strong>Personal Time Off (PTO)</strong><br>
+    PTO days are not included in this summary. Please be kindly reminded that PTO days must be requested in advance (minimum 5 working days) and are subject to approval by the school.
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <div class="note" style="font-size:0.82rem;line-height:1.7;padding:1rem 1.25rem">
+    <strong>Quick reference summary</strong><br>
+    Academic year start: Sep 1, 2026 &nbsp;·&nbsp; School starts: Sep 1, 2026 &nbsp;·&nbsp; Last day of school: Jun 25, 2027 (half day) &nbsp;·&nbsp;
+    Graduation: Jun 25, 2027 &nbsp;·&nbsp; Reports published: Jul 2, 2027 &nbsp;·&nbsp;
+    Last working day: Jul 9, 2027 &nbsp;·&nbsp; Summer vacation: Jul 10 – Aug 22, 2027 &nbsp;·&nbsp;
+    Staff return 2027–28: Aug 23, 2027
+  </div>
+
+</main>
+
+<footer>
+  Montessori Bright Academy · Lisbon · 2026–2027 · This document is for internal staff use only.
+</footer>
+
+</body>
+</html>

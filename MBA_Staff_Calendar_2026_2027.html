@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBA Staff Calendar 2026–2027</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+
+  :root {
+    --navy: #0C447C;
+    --navy-light: #E6F1FB;
+    --navy-mid: #185FA5;
+    --gold: #BA7517;
+    --gold-light: #FAEEDA;
+    --gold-text: #633806;
+    --green-bg: #EAF3DE;
+    --green-text: #27500A;
+    --pink-bg: #FBEAF0;
+    --pink-text: #72243E;
+    --hol-bg: #E0F2F1;
+    --hol-text: #00695C;
+    --teal: #1D9E75;
+    --purple: #534AB7;
+    --orange: #D85A30;
+    --gray: #888780;
+    --grid: #E8E6E0;
+    --bg: #F7F5F0;
+    --white: #FFFFFF;
+    --text: #1A1A18;
+    --text-muted: #6B6965;
+    --mark-bg: #FFF3CD;
+    --mark-text: #856404;
+    --conf-bg: #E8E0F5;
+    --conf-text: #4A2080;
+    --report-bg: #FCE8D8;
+    --report-text: #7A2D00;
+    --closure-bg: #E6E0F8;
+    --closure-text: #3B2080;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--navy);
+    padding: 2.5rem 3rem 2rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .header-left h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .header-left .year-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+
+  .header-left .school-name {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+    margin-top: 4px;
+    font-weight: 300;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .key-date { display: flex; align-items: center; gap: 8px; }
+  .key-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .legend-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--grid);
+    padding: 0.9rem 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    align-items: center;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .legend-swatch {
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.08);
+    flex-shrink: 0;
+  }
+
+  .legend-circle {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  main {
+    padding: 2rem 3rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .months-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .month-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--grid);
+  }
+
+  .month-header {
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 9px 12px;
+    text-align: center;
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--grid);
+    padding: 1px;
+  }
+
+  .dow-cell {
+    background: var(--white);
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--gray);
+    padding: 4px 2px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .day-cell {
+    background: var(--white);
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 5px 2px;
+    color: var(--text);
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .day-cell.empty { background: var(--white); }
+  .day-cell.weekend { color: var(--gray); font-weight: 400; }
+  .day-cell.before, .day-cell.after { color: #ccc; font-weight: 400; }
+  .day-cell.work { background: var(--navy-light); color: var(--navy); }
+  .day-cell.vacation { background: var(--gold-light); color: var(--gold-text); }
+  .day-cell.staff { background: var(--green-bg); color: var(--green-text); font-weight: 600; }
+  .day-cell.holiday { background: var(--hol-bg); color: var(--hol-text); font-weight: 500; }
+  .day-cell.mark-absent { background: var(--mark-bg); color: var(--mark-text); }
+  .day-cell.conference { background: var(--conf-bg); color: var(--conf-text); font-weight: 600; }
+  .day-cell.report { background: var(--report-bg); color: var(--report-text); font-weight: 600; }
+  .day-cell.closure { background: var(--closure-bg); color: var(--closure-text); font-weight: 600; }
+
+  .day-cell.return {
+    background: var(--teal); color: var(--white);
+    border-radius: 50%; font-weight: 600;
+    width: 26px; height: 26px; margin: auto; padding: 0;
+  }
+  .day-cell.last-school {
+    background: var(--orange); color: var(--white);
+    border-radius: 50%; font-weight: 600;
+    width: 26px; height: 26px; margin: auto; padding: 0;
+  }
+  .day-cell.last-work {
+    background: var(--purple); color: var(--white);
+    border-radius: 50%; font-weight: 600;
+    width: 26px; height: 26px; margin: auto; padding: 0;
+  }
+
+  /* tiny dot indicator for days with notes */
+  .day-cell.has-note::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  .month-events {
+    padding: 8px 12px 10px;
+    border-top: 1px solid var(--grid);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .event-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .event-pip {
+    width: 6px; height: 6px;
+    border-radius: 2px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem 3rem;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--grid);
+    background: var(--white);
+  }
+
+  @media (max-width: 900px) {
+    .months-grid { grid-template-columns: repeat(2, 1fr); }
+    header { flex-direction: column; align-items: flex-start; }
+    .header-right { align-items: flex-start; }
+  }
+  @media (max-width: 600px) {
+    .months-grid { grid-template-columns: 1fr; }
+    header, main, .legend-bar { padding-left: 1.25rem; padding-right: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="year-badge">2026 – 2027</div>
+    <h1>MBA Staff Calendar</h1>
+    <div class="school-name">Montessori Bright Academy · Lisbon</div>
+  </div>
+  <div class="header-right">
+    <div class="key-date"><span class="key-dot" style="background:var(--teal)"></span>Staff return: Aug 17, 2026</div>
+    <div class="key-date"><span class="key-dot" style="background:var(--orange)"></span>Last day of school (half day): Jun 25, 2027</div>
+    <div class="key-date"><span class="key-dot" style="background:var(--purple)"></span>Last working day: Jul 9, 2027</div>
+    <div class="key-date"><span class="key-dot" style="background:var(--teal)"></span>Return 27–28: Aug 23, 2027</div>
+  </div>
+</header>
+
+<div class="legend-bar">
+  <div class="legend-item"><div class="legend-circle" style="background:var(--teal)"></div>Staff return</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--navy-light)"></div>School in session</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--green-bg)"></div>Staff days / prep</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--gold-light)"></div>Vacation / school break</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--hol-bg);border:1px solid var(--hol-text)"></div>Public holiday</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--conf-bg)"></div>Parent-teacher conferences</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--mark-bg)"></div>Mark absent</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--report-bg)"></div>Progress reports</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--closure-bg)"></div>End-of-year closure &amp; trainings</div>
+  <div class="legend-item"><div class="legend-circle" style="background:var(--orange)"></div>Last day of school</div>
+  <div class="legend-item"><div class="legend-circle" style="background:var(--purple)"></div>Last working day</div>
+</div>
+
+<main>
+  <div class="months-grid" id="calendar"></div>
+</main>
+
+<footer>
+  This calendar provides a general overview. Detailed updates and additional events will be shared via the MBA app. · Montessori Bright Academy, Lisbon
+</footer>
+
+<script>
+const STAFF_RETURN_START = new Date(2026,7,17);
+const STAFF_RETURN_END   = new Date(2027,7,23); // Aug 23 2027
+const LAST_SCHOOL        = new Date(2027,5,25);
+const LAST_WORK          = new Date(2027,6,9);  // Jul 9 2027
+
+// Special ranges (all 1-based months in JS Date = month-1)
+const STAFF_PREP       = [new Date(2026,7,17), new Date(2026,7,31)]; // Aug 17-31
+const MARK_ABSENT      = [new Date(2026,8,14), new Date(2026,8,25)]; // Sep 14-25
+const CONF_DEC         = [new Date(2026,11,7), new Date(2026,11,11)]; // Dec 7-11
+const CONF_MAR         = [new Date(2027,2,22), new Date(2027,2,25)]; // Mar 22-25
+const REPORTS_PERIOD   = [new Date(2027,5,28), new Date(2027,6,2)];  // Jun 28 - Jul 2
+const REPORT_PUB       = new Date(2027,6,2); // Jul 2
+const CLOSURE_TRAIN    = [new Date(2027,6,5), new Date(2027,6,9)];  // Jul 5-9
+
+const VACATION = [
+  [new Date(2026,9,26),  new Date(2026,9,30)],
+  [new Date(2026,11,21), new Date(2027,0,3)],
+  [new Date(2027,1,8),   new Date(2027,1,12)],
+  [new Date(2027,3,5),   new Date(2027,3,16)],
+  [new Date(2027,6,10),  new Date(2027,7,22)], // Jul 3 – Aug 22
+];
+
+const HOLIDAYS = [
+  new Date(2026,9,5),  new Date(2026,10,2), new Date(2026,11,1), new Date(2026,11,8),
+  new Date(2027,0,1),  new Date(2027,2,26), new Date(2027,4,1),  new Date(2027,4,27),
+  new Date(2027,5,10), new Date(2027,5,13),
+];
+
+function sameDay(a,b){ return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate(); }
+function inRange(d,s,e){ const dt=new Date(d.getFullYear(),d.getMonth(),d.getDate()); return dt>=new Date(s.getFullYear(),s.getMonth(),s.getDate())&&dt<=new Date(e.getFullYear(),e.getMonth(),e.getDate()); }
+
+function getDayType(d){
+  const dw=d.getDay(), isWe=dw===0||dw===6;
+  if(sameDay(d,STAFF_RETURN_START)) return 'return';
+  if(sameDay(d,STAFF_RETURN_END))   return 'return';
+  if(sameDay(d,LAST_SCHOOL))        return 'last-school';
+  if(sameDay(d,REPORT_PUB)&&!isWe) return 'last-work'; // Jul 2 = report publication + last work day
+  // Closure + trainings Jul 5-9
+  if(inRange(d,CLOSURE_TRAIN[0],CLOSURE_TRAIN[1])&&!isWe) return 'closure';
+  // Progress reports period Jun 28–Jul 2
+  if(inRange(d,REPORTS_PERIOD[0],REPORTS_PERIOD[1])&&!isWe) return 'report';
+  // Staff prep Aug 17-21
+  if(inRange(d,STAFF_PREP[0],STAFF_PREP[1])&&!isWe) return 'staff';
+  // Conferences
+  if(inRange(d,CONF_DEC[0],CONF_DEC[1])&&!isWe) return 'conference';
+  if(inRange(d,CONF_MAR[0],CONF_MAR[1])&&!isWe) return 'conference';
+  // Mark absent
+  if(inRange(d,MARK_ABSENT[0],MARK_ABSENT[1])&&!isWe) return 'mark-absent';
+  for(const h of HOLIDAYS) if(sameDay(d,h)) return 'holiday';
+  for(const [s,e] of VACATION) if(inRange(d,s,e)) return isWe?'weekend':'vacation';
+  if(d<STAFF_RETURN_START) return 'before';
+  if(d>LAST_WORK&&d<STAFF_RETURN_END&&!isWe) return 'vacation';
+  if(d>STAFF_RETURN_END)   return 'after';
+  return isWe?'weekend':'work';
+}
+
+const MONTHS = [
+  {y:2026,m:8,  label:'August 2026',    events:[
+    {c:'var(--teal)',      t:'Aug 17 — Staff return'},
+    {c:'var(--green-text)',t:'Aug 17–31 — Staff days: trainings, class preparations & home visits'},
+  ]},
+  {y:2026,m:9,  label:'September 2026', events:[
+    {c:'var(--navy)',      t:'Sep 1 — Orientation Day / term 1 begins'},
+    {c:'var(--navy)',      t:'Sep 2 — First day Toddlers & Primary'},
+    {c:'var(--navy)',      t:'Sep 3 — First day Elementary'},
+    {c:'var(--mark-text)', t:'Sep 14–25 — Mark absent'},
+  ]},
+  {y:2026,m:10, label:'October 2026',   events:[
+    {c:'var(--hol-text)', t:'Oct 5 — Republic Day'},
+    {c:'var(--gold-text)', t:'Oct 26–30 — Fall break'},
+  ]},
+  {y:2026,m:11, label:'November 2026',  events:[
+    {c:'var(--navy)',      t:'Nov 2 — School resumes'},
+  ]},
+  {y:2026,m:12, label:'December 2026',  events:[
+    {c:'var(--hol-text)', t:'Dec 1 — Independence Day'},
+    {c:'var(--conf-text)', t:'Dec 7–11 — Parent-teacher conferences'},
+    {c:'var(--hol-text)', t:'Dec 8 — Immaculate Conception'},
+    {c:'var(--navy)',      t:'Dec 11 — Winter Festival'},
+    {c:'var(--gold-text)', t:'Dec 21–Jan 3 — Winter break'},
+  ]},
+  {y:2027,m:1,  label:'January 2027',   events:[
+    {c:'var(--navy)',      t:'Jan 4 — School resumes / term 2 begins'},
+  ]},
+  {y:2027,m:2,  label:'February 2027',  events:[
+    {c:'var(--gold-text)', t:'Feb 8–12 — Carnival break'},
+  ]},
+  {y:2027,m:3,  label:'March 2027',     events:[
+    {c:'var(--conf-text)', t:'Mar 22–25 — Parent-teacher conferences'},
+    {c:'var(--hol-text)', t:'Mar 26 — Good Friday'},
+    {c:'var(--navy)',      t:'Mar 31 — End of term 2'},
+  ]},
+  {y:2027,m:4,  label:'April 2027',     events:[
+    {c:'var(--gold-text)', t:'Apr 5–16 — Spring break'},
+    {c:'var(--navy)',      t:'Apr 17 — Term 3 begins'},
+  ]},
+  {y:2027,m:5,  label:'May 2027',       events:[
+    {c:'var(--hol-text)', t:'May 1 — Labor Day'},
+    {c:'var(--hol-text)', t:'May 27 — Corpus Cristi'},
+  ]},
+  {y:2027,m:6,  label:'June 2027',      events:[
+    {c:'var(--hol-text)', t:'Jun 10 — Portugal Day'},
+    {c:'var(--hol-text)', t:'Jun 13 — Lisbon Day'},
+    {c:'var(--orange)',    t:'Jun 25 — Last day of school'},
+    {c:'var(--orange)',    t:'Jun 25 — Last day of school (half day) + Graduation &amp; end-of-year celebration'},
+    {c:'var(--report-text)',t:'Jun 28–Jul 2 — Drafting of end-of-year progress reports'},
+    
+  ]},
+  {y:2027,m:7,  label:'July 2027',      events:[
+    {c:'var(--report-text)',t:'Jul 2 — Publication of progress reports'},
+    {c:'var(--closure-text)',t:'Jul 5–9 — End-of-year closure + trainings'},
+    {c:'var(--purple)',    t:'Jul 9 — Last working day'},
+    {c:'var(--gold-text)', t:'Jul 10 — Summer vacation begins'},
+  ]},
+  {y:2027,m:8,  label:'August 2027',    events:[
+    {c:'var(--teal)',      t:'Aug 23 — Staff return 2027–2028'},
+  ]},
+];
+
+const DOW = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+const container = document.getElementById('calendar');
+
+MONTHS.forEach(({y,m,label,events})=>{
+  const card=document.createElement('div');
+  card.className='month-card';
+
+  const hdr=document.createElement('div');
+  hdr.className='month-header';
+  hdr.textContent=label;
+  card.appendChild(hdr);
+
+  const grid=document.createElement('div');
+  grid.className='cal-grid';
+
+  DOW.forEach(d=>{
+    const c=document.createElement('div');
+    c.className='dow-cell';
+    c.textContent=d;
+    grid.appendChild(c);
+  });
+
+  const firstDay=new Date(y,m-1,1).getDay();
+  const daysInMonth=new Date(y,m,0).getDate();
+
+  for(let i=0;i<firstDay;i++){
+    const c=document.createElement('div');
+    c.className='day-cell empty';
+    grid.appendChild(c);
+  }
+
+  for(let dn=1;dn<=daysInMonth;dn++){
+    const date=new Date(y,m-1,dn);
+    const dt=getDayType(date);
+    const c=document.createElement('div');
+    c.className=`day-cell ${dt}`;
+    c.textContent=dn;
+    grid.appendChild(c);
+  }
+
+  card.appendChild(grid);
+
+  if(events&&events.length){
+    const evDiv=document.createElement('div');
+    evDiv.className='month-events';
+    events.forEach(({c,t})=>{
+      const row=document.createElement('div');
+      row.className='event-row';
+      row.innerHTML=`<span class="event-pip" style="background:${c}"></span><span>${t}</span>`;
+      evDiv.appendChild(row);
+    });
+    card.appendChild(evDiv);
+  }
+
+  container.appendChild(card);
+});
+</script>
+</body>
+</html>
