@@ -31,10 +31,10 @@
   .topbar-center { flex: 1; padding-left: 1.5rem; font-size: 13px; color: rgba(255,255,255,0.5); }
   .topbar-right { display: flex; align-items: center; gap: 10px; }
   .topbar-tag { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; padding: 3px 8px; font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 0.04em; }
-  .admin-btn { display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 5px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); transition: all 0.15s; }
-  .admin-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
-  .admin-btn.active { background: var(--gold); border-color: var(--gold); color: #fff; }
-  .admin-btn i { font-size: 14px; }
+
+
+
+
 
   .layout { display: flex; margin-top: var(--header-h); min-height: calc(100vh - var(--header-h)); }
 
@@ -94,66 +94,19 @@
   .btn-secondary:hover { background: var(--slate-light); }
   .btn-danger { background: var(--red-light); color: var(--red); border-color: #FED7D7; }
   .btn-danger:hover { background: #FED7D7; }
-  .btn-edit { background: var(--gold-light); color: var(--gold); border-color: var(--gold-border); }
-  .btn-edit:hover { background: var(--gold-border); }
-  .btn-green { background: var(--teal-light); color: var(--teal); border-color: #A7DFD0; }
-  .btn-green:hover { background: #A7DFD0; }
+
+
+
+
 
   .coming-soon-card { background: var(--white); border: 1px dashed var(--border-strong); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; min-height: 160px; }
   .coming-soon-card i { font-size: 28px; color: var(--border-strong); }
   .coming-soon-card .cs-title { font-size: 13px; font-weight: 500; color: var(--text-muted); }
   .coming-soon-card .cs-desc { font-size: 12px; color: var(--text-muted); max-width: 220px; line-height: 1.5; }
 
-  /* ── ADMIN PANEL ── */
-  .admin-bar { display: none; background: #FFFBF0; border-bottom: 2px solid var(--gold); padding: 1.25rem 2rem 1.25rem calc(var(--sidebar-w) + 2rem); position: sticky; top: var(--header-h); z-index: 90; }
-  .admin-bar.open { display: block; }
-  .admin-bar-inner { max-width: calc(960px - var(--sidebar-w)); }
-  .admin-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
-  .admin-header i { color: var(--gold); font-size: 20px; }
-  .admin-header h2 { font-size: 14px; font-weight: 600; color: var(--navy); }
-  .admin-header p { font-size: 12px; color: var(--text-muted); }
 
-  /* JSON EDITOR */
-  .json-editor-wrap { background: var(--white); border: 1px solid var(--gold-border); border-radius: 10px; overflow: hidden; }
-  .json-editor-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--slate-light); }
-  .json-editor-title { font-size: 12px; font-weight: 600; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
-  .json-editor-title i { font-size: 15px; }
-  .json-editor-actions { display: flex; gap: 8px; }
-  textarea#jsonEditor { width: 100%; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6; color: var(--text); border: none; padding: 1rem; min-height: 280px; resize: vertical; outline: none; background: var(--white); }
-  .json-error { font-size: 12px; color: var(--red); padding: 6px 14px; display: none; background: var(--red-light); border-top: 1px solid #FED7D7; }
 
-  /* ── FORM ── */
-  .add-form-wrap { background: var(--white); border: 1px solid var(--gold-border); border-radius: 10px; padding: 1.25rem; margin-top: 12px; }
-  .form-title { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-  .form-group { display: flex; flex-direction: column; gap: 4px; }
-  .form-group.full { grid-column: 1 / -1; }
-  .form-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); }
-  .form-input, .form-select, .form-textarea { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--bg); border: 1px solid var(--border-strong); border-radius: 6px; padding: 7px 10px; width: 100%; transition: border-color 0.15s; }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--navy-mid); background: var(--white); }
-  .form-textarea { resize: vertical; min-height: 60px; }
-  .form-actions { display: flex; gap: 8px; }
 
-  /* ── MODAL ── */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(12,29,78,0.5); z-index: 500; align-items: center; justify-content: center; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: var(--white); border-radius: 12px; padding: 2rem; width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-  .modal h3 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 6px; }
-  .modal p { font-size: 13px; color: var(--text-muted); margin-bottom: 1.25rem; }
-  .modal-input { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text); border: 1px solid var(--border-strong); border-radius: 6px; padding: 9px 12px; width: 100%; margin-bottom: 8px; }
-  .modal-input:focus { outline: none; border-color: var(--navy-mid); }
-  .modal-actions { display: flex; gap: 8px; }
-  .modal-error { font-size: 12px; color: var(--red); margin-bottom: 8px; display: none; }
-
-  /* ── TOAST ── */
-  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 13px; display: flex; align-items: center; gap: 8px; z-index: 999; transform: translateY(80px); opacity: 0; transition: all 0.3s; pointer-events: none; }
-  .toast.show { transform: translateY(0); opacity: 1; }
-  .toast i { font-size: 16px; color: var(--teal); }
-
-  /* ── DOWNLOAD INSTRUCTIONS ── */
-  .instructions { background: var(--navy-light); border: 1px solid #BDD5EE; border-radius: 8px; padding: 1rem 1.25rem; margin-top: 12px; font-size: 12px; color: var(--navy-mid); line-height: 1.7; }
-  .instructions strong { font-weight: 600; }
-  .instructions ol { padding-left: 1.25rem; margin-top: 6px; }
 
   @media (max-width: 768px) {
     .sidebar { display: none; }
@@ -161,25 +114,11 @@
     .admin-bar { padding-left: 1.25rem; }
     .cards-grid { grid-template-columns: 1fr; }
     .stats-row { grid-template-columns: repeat(2,1fr); }
-    .form-grid { grid-template-columns: 1fr; }
+  
   }
 </style>
 </head>
 <body>
-
-<!-- PASSWORD MODAL -->
-<div class="modal-overlay" id="pwModal">
-  <div class="modal">
-    <h3>Admin access</h3>
-    <p>Enter the admin password to manage documents.</p>
-    <input class="modal-input" type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
-    <div class="modal-error" id="pwError">Incorrect password. Please try again.</div>
-    <div class="modal-actions">
-      <button class="btn btn-primary" onclick="checkPw()"><i class="ti ti-lock-open"></i> Enter</button>
-      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-    </div>
-  </div>
-</div>
 
 <!-- TOAST -->
 <div class="toast" id="toast"><i class="ti ti-check"></i><span id="toastMsg">Saved</span></div>
@@ -197,90 +136,6 @@
   <div class="topbar-right">
     <div class="topbar-tag">Teaching &amp; TA Staff</div>
     <div class="topbar-tag">2026–2027</div>
-    <button class="admin-btn" id="adminToggle" onclick="toggleAdmin()"><i class="ti ti-settings"></i> Manage</button>
-  </div>
-</div>
-
-<!-- ADMIN BAR -->
-<div class="admin-bar" id="adminBar">
-  <div class="admin-bar-inner">
-    <div class="admin-header">
-      <i class="ti ti-settings"></i>
-      <div>
-        <h2>Document Manager</h2>
-        <p>Add or remove documents below. When done, click <strong>Download updated file</strong> and re-upload to Netlify.</p>
-      </div>
-      <button class="btn btn-primary" onclick="downloadJson()" style="margin-left:auto;white-space:nowrap"><i class="ti ti-download"></i> Download updated file</button>
-    </div>
-
-    <!-- STEPS -->
-    <div class="instructions" style="margin-bottom:12px">
-      <strong>3 steps to publish changes:</strong> &nbsp;
-      1. Add or remove documents below &nbsp;→&nbsp;
-      2. Click <strong>Download updated file</strong> &nbsp;→&nbsp;
-      3. Drag your whole folder into <strong>Netlify</strong>. Done ✓
-    </div>
-
-    <!-- ADD FORM -->
-    <div class="add-form-wrap">
-      <div class="form-title"><i class="ti ti-plus"></i> Add a new document</div>
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label">Title</label>
-          <input class="form-input" id="f-title" placeholder="Staff Calendar 2027–2028">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Section</label>
-          <select class="form-select" id="f-section">
-            <option value="calendars">Calendars</option>
-            <option value="summaries">Year Summaries</option>
-            <option value="events">Events &amp; Ceremonies</option>
-            <option value="coming-soon">Coming Soon</option>
-          </select>
-        </div>
-        <div class="form-group full">
-          <label class="form-label">Description</label>
-          <textarea class="form-textarea" id="f-desc" placeholder="Short description..."></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label">File name (e.g. MBA_Doc.html)</label>
-          <input class="form-input" id="f-file" placeholder="MBA_Document.html">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tag label</label>
-          <input class="form-input" id="f-tag" placeholder="2027–28">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tag style</label>
-          <select class="form-select" id="f-tagstyle">
-            <option value="upcoming">Upcoming (blue)</option>
-            <option value="current">Current (green)</option>
-            <option value="coming-soon">Coming soon (grey)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Accent colour</label>
-          <select class="form-select" id="f-accent">
-            <option value="navy">Navy</option>
-            <option value="gold">Gold</option>
-            <option value="teal">Teal</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Meta detail (optional)</label>
-          <input class="form-input" id="f-meta" placeholder="Aug 17, 2027 – Aug 23, 2028">
-        </div>
-      </div>
-      <div class="form-actions">
-        <button class="btn btn-primary" onclick="quickAdd()"><i class="ti ti-plus"></i> Add document</button>
-        <button class="btn btn-secondary" onclick="resetForm()"><i class="ti ti-x"></i> Clear</button>
-      </div>
-    </div>
-
-    <!-- hidden json editor still needed for downloadJson() -->
-    <textarea id="jsonEditor" style="display:none" spellcheck="false"></textarea>
-    <div class="json-error" id="jsonError" style="display:none"></div>
-
   </div>
 </div>
 
@@ -348,7 +203,6 @@
 <script>
 const ADMIN_PASSWORD = 'mba2026';
 let docs = [];
-let adminOpen = false;
 
 // ── LOAD DOCS from documents.json ──
 async function loadDocs() {
@@ -369,7 +223,6 @@ async function loadDocs() {
     ];
   }
   render();
-  syncJsonEditor();
 }
 
 // ── RENDER ──
@@ -386,14 +239,11 @@ function render() {
     if (secDocs.length === 0) {
       grid.innerHTML = `<div class="coming-soon-card"><i class="ti ti-folder-open"></i><div class="cs-title">No documents yet</div><div class="cs-desc">Add documents using the admin panel above.</div></div>`;
     }
-    const wrapper = document.getElementById('section-' + sec);
-    if (wrapper) wrapper.style.display = (secDocs.length === 0 && !adminOpen) ? 'none' : 'block';
   });
 }
 
 function renderCard(doc) {
-  const adminBtns = adminOpen ? `
-    <button class="btn btn-danger" onclick="removeDoc(${doc.id})"><i class="ti ti-trash"></i> Remove</button>` : '';
+  const adminBtns = '';
   const viewBtns = doc.file ? `
     <a href="${doc.file}" target="_blank" class="btn btn-primary"><i class="ti ti-eye"></i> View</a>
     <a href="${doc.file}" download class="btn btn-secondary"><i class="ti ti-download"></i> Download</a>` : '';
@@ -415,7 +265,7 @@ function renderCard(doc) {
 }
 
 function renderComingSoon(doc) {
-  const adminBtns = adminOpen ? `<div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn-danger" onclick="removeDoc(${doc.id})"><i class="ti ti-trash"></i> Remove</button></div>` : '';
+  const adminBtns = '';
   return `
     <div class="coming-soon-card">
       <i class="ti ti-clock"></i>
@@ -425,113 +275,28 @@ function renderComingSoon(doc) {
     </div>`;
 }
 
-// ── ADMIN ──
-function toggleAdmin() {
-  if (!adminOpen) {
-    document.getElementById('pwModal').classList.add('open');
-    setTimeout(() => document.getElementById('pwInput').focus(), 100);
-  } else {
-    adminOpen = false;
-    document.getElementById('adminBar').classList.remove('open');
-    document.getElementById('adminToggle').classList.remove('active');
-    render();
-  }
-}
 
-function checkPw() {
-  const val = document.getElementById('pwInput').value;
-  if (val === ADMIN_PASSWORD) {
-    closeModal();
-    adminOpen = true;
-    document.getElementById('adminBar').classList.add('open');
-    document.getElementById('adminToggle').classList.add('active');
-    syncJsonEditor();
-    render();
-  } else {
-    document.getElementById('pwError').style.display = 'block';
-    document.getElementById('pwInput').value = '';
-    document.getElementById('pwInput').focus();
-  }
-}
 
-function closeModal() {
-  document.getElementById('pwModal').classList.remove('open');
-  document.getElementById('pwError').style.display = 'none';
-  document.getElementById('pwInput').value = '';
-}
 
-// ── JSON EDITOR ──
-function syncJsonEditor() {
-  document.getElementById('jsonEditor').value = JSON.stringify(docs, null, 2);
-}
 
-function applyJson() {
-  const raw = document.getElementById('jsonEditor').value;
-  const errEl = document.getElementById('jsonError');
-  try {
-    docs = JSON.parse(raw);
-    errEl.style.display = 'none';
-    render();
-    showToast('Preview updated');
-  } catch(e) {
-    errEl.textContent = 'Invalid JSON: ' + e.message;
-    errEl.style.display = 'block';
-  }
-}
 
-function downloadJson() {
-  applyJson();
-  const raw = document.getElementById('jsonEditor').value;
-  try {
-    JSON.parse(raw); // validate
-    const blob = new Blob([raw], { type: 'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'documents.json';
-    a.click();
-    showToast('documents.json downloaded — upload to Netlify to publish');
-  } catch(e) {
-    document.getElementById('jsonError').textContent = 'Fix JSON errors before downloading.';
-    document.getElementById('jsonError').style.display = 'block';
-  }
-}
 
-// ── QUICK ADD ──
-function quickAdd() {
-  const title = document.getElementById('f-title').value.trim();
-  if (!title) { alert('Please enter a document title.'); return; }
-  const maxId = docs.length ? Math.max(...docs.map(d=>d.id||0)) : 0;
-  docs.push({
-    id: maxId + 1,
-    section:  document.getElementById('f-section').value,
-    title,
-    desc:     document.getElementById('f-desc').value.trim(),
-    file:     document.getElementById('f-file').value.trim(),
-    tag:      document.getElementById('f-tag').value.trim() || 'New',
-    tagStyle: document.getElementById('f-tagstyle').value,
-    accent:   document.getElementById('f-accent').value,
-    meta:     document.getElementById('f-meta').value.trim(),
-  });
-  syncJsonEditor();
-  render();
-  resetForm();
-  showToast('Added — download JSON to publish');
-}
+
+
+
+
+
+
+
 
 function removeDoc(id) {
   if (!confirm('Remove this document from the portal?')) return;
   docs = docs.filter(d => d.id !== id);
-  syncJsonEditor();
   render();
   showToast('Removed — download JSON to publish');
 }
 
-function resetForm() {
-  ['f-title','f-desc','f-file','f-tag','f-meta'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('f-section').value = 'calendars';
-  document.getElementById('f-tagstyle').value = 'upcoming';
-  document.getElementById('f-accent').value = 'navy';
-}
+
 
 function showToast(msg) {
   const t = document.getElementById('toast');
