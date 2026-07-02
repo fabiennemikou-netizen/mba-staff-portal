@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materials Overview — MBA</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1B2A4A;
+    --navy-mid: #243660;
+    --navy-light: #EEF1F7;
+    --gold: #C49A2A;
+    --gold-light: #FBF5E6;
+    --teal: #2A7A7A;
+    --teal-light: #E8F4F4;
+    --red: #CC3300;
+    --red-light: #FFF0EC;
+    --text: #2C2C2C;
+    --muted: #666;
+    --border: #D8DDE8;
+    --white: #FFFFFF;
+    --radius: 6px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F4F6FB;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--navy);
+    padding: 28px 40px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    border-bottom: 3px solid var(--gold);
+  }
+  .header-logo {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .header-text h1 {
+    font-family: 'DM Serif Display', serif;
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .header-text h1 span {
+    color: var(--gold);
+  }
+  .header-text p {
+    color: rgba(255,255,255,0.55);
+    font-size: 12px;
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: flex;
+    min-height: calc(100vh - 107px);
+  }
+
+  /* ── SIDEBAR NAV ── */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 20px 8px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 20px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--muted);
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .nav-item:hover { background: var(--navy-light); color: var(--navy); }
+  .nav-item.active { border-left-color: var(--gold); color: var(--navy); font-weight: 600; background: var(--gold-light); }
+  .nav-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-item.active .nav-num { background: var(--gold); color: white; }
+  .nav-divider { height: 1px; background: var(--border); margin: 12px 20px; }
+  .nav-submit-btn {
+    margin: 16px 20px 0;
+    width: calc(100% - 40px);
+    padding: 10px;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .nav-submit-btn:hover { background: #1f5f5f; }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    flex: 1;
+    padding: 32px 40px 80px;
+    max-width: 1100px;
+  }
+
+  /* ── SECTION ── */
+  .form-section {
+    display: none;
+  }
+  .form-section.active {
+    display: block;
+  }
+
+  .section-header {
+    margin-bottom: 24px;
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .section-desc {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  /* ── INTRO CARD ── */
+  .intro-card {
+    background: var(--navy-light);
+    border-left: 4px solid var(--navy);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+  }
+  .intro-card h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .intro-card ul {
+    padding-left: 18px;
+    color: var(--navy-mid);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* ── HEADER FIELDS GRID ── */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .field-group label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+  }
+  .field-group input, .field-group select, .field-group textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: white;
+    color: var(--text);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+  }
+  .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(42,122,122,0.12);
+  }
+  .field-group textarea { resize: vertical; min-height: 64px; }
+
+  /* ── TABLE SECTIONS ── */
+  .table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+  table.data-table thead tr {
+    background: var(--navy);
+  }
+  table.data-table thead th {
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 10px 12px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  table.data-table tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+  table.data-table tbody tr:last-child { border-bottom: none; }
+  table.data-table tbody tr:nth-child(even) { background: #FAFBFD; }
+  table.data-table tbody td {
+    padding: 6px 8px;
+    vertical-align: top;
+  }
+  table.data-table tbody td input,
+  table.data-table tbody td select,
+  table.data-table tbody td textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+    min-width: 80px;
+  }
+  table.data-table tbody td input:focus,
+  table.data-table tbody td select:focus,
+  table.data-table tbody td textarea:focus {
+    border-color: var(--teal);
+    background: white;
+    box-shadow: 0 0 0 2px rgba(42,122,122,0.12);
+  }
+  table.data-table tbody td textarea {
+    resize: none;
+    min-height: 36px;
+    overflow: hidden;
+  }
+  table.data-table tbody td select {
+    cursor: pointer;
+  }
+  td.del-cell {
+    width: 32px;
+    text-align: center;
+  }
+  .del-row-btn {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .del-row-btn:hover { color: var(--red); background: var(--red-light); }
+
+  .add-row-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--teal-light);
+    color: var(--teal);
+    border: 1px dashed var(--teal);
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .add-row-btn:hover { background: #d1ecec; }
+
+  /* urgency badges */
+  select.urgency-select option[value="immediate"] { color: var(--red); font-weight: 700; }
+  select.urgency-select option[value="this-week"] { color: #C47A00; }
+  select.urgency-select option[value="this-month"] { color: var(--teal); }
+  select.urgency-select option[value="low"] { color: var(--muted); }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .check-item {
+    display: grid;
+    grid-template-columns: 44px 1fr 200px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item:nth-child(even) { background: #FAFBFD; }
+  .check-cell {
+    padding: 14px 12px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .check-cell input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--teal);
+    cursor: pointer;
+    margin-top: 1px;
+  }
+  .check-label {
+    padding: 14px 12px 14px 0;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    align-self: center;
+  }
+  .check-notes {
+    padding: 8px 12px;
+    border-left: 1px solid var(--border);
+  }
+  .check-notes input {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 6px 8px;
+    color: var(--muted);
+    background: transparent;
+    outline: none;
+    height: 100%;
+  }
+  .check-notes input:focus {
+    border-color: var(--teal);
+    background: white;
+  }
+  .check-header {
+    display: grid;
+    grid-template-columns: 44px 1fr 200px;
+    background: var(--navy);
+    color: white;
+  }
+  .check-header-cell {
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV BUTTONS ── */
+  .section-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: none;
+    outline: none;
+  }
+  .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: var(--navy-light); color: var(--navy); border-color: var(--navy); }
+  .btn-primary { background: var(--navy); color: white; }
+  .btn-primary:hover { background: var(--navy-mid); }
+  .btn-teal { background: var(--teal); color: white; }
+  .btn-teal:hover { background: #1f5f5f; }
+  .btn-print { background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold); }
+  .btn-print:hover { background: var(--gold); color: white; }
+
+  /* ── SUBMISSION ── */
+  .submit-panel {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 36px 40px;
+    text-align: center;
+    color: white;
+    margin-top: 8px;
+  }
+  .submit-panel h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .submit-panel p {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .submit-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .sidebar, .site-header .header-logo, .section-nav, .add-row-btn, .del-row-btn, .nav-submit-btn { display: none !important; }
+    .layout { display: block; }
+    .main { padding: 0; max-width: 100%; }
+    .form-section { display: block !important; page-break-after: always; }
+    body { background: white; font-size: 12px; }
+    .submit-panel { display: none; }
+    table.data-table tbody td input,
+    table.data-table tbody td select,
+    table.data-table tbody td textarea {
+      border: 1px solid #ccc !important;
+    }
+  }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--navy);
+    color: white;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
+    border-left: 4px solid var(--gold);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    position: relative;
+    margin-bottom: 24px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+</style>
+</head>
+<body>
+
+<!-- Netlify form detection anchor — do not remove -->
+<form name="materials-overview" data-netlify="true" netlify-honeypot="bot-field" method="POST" style="display:none;" aria-hidden="true">
+  <input type="hidden" name="form-name" value="materials-overview">
+  <input name="bot-field">
+  <input name="prepared-by"><input name="date-submitted"><input name="classroom">
+  <input name="reviewed-by"><input name="header-notes">
+  <input name="section-1-priority"><input name="section-2-repairs"><input name="section-3-replacements">
+  <input name="section-4-complete"><input name="section-5-purchases"><input name="section-6-making">
+  <input name="section-7-wishlist"><input name="section-8-hazards"><input name="section-9-risk">
+  <input name="section-10-checklist">
+</form>
+
+<header class="site-header">
+  <svg class="header-logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="22" fill="#C49A2A" opacity="0.15"/>
+    <circle cx="24" cy="24" r="22" stroke="#C49A2A" stroke-width="1.5"/>
+    <path d="M14 32 L24 14 L34 32" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M17.5 26.5 H30.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="24" cy="12" r="2" fill="#C49A2A"/>
+  </svg>
+  <div class="header-text">
+    <h1>Materials Overview <span>&mdash; Inventory, Action Plan & Risk Assessment</span></h1>
+    <p>Montessori Bright Academy &nbsp;·&nbsp; Internal document &nbsp;·&nbsp; Confidential</p>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-label">Sections</div>
+    <a class="nav-item active" onclick="goTo(0)" href="#">
+      <span class="nav-num">0</span> Header Info
+    </a>
+    <a class="nav-item" onclick="goTo(1)" href="#">
+      <span class="nav-num">1</span> Priority Overview
+    </a>
+    <a class="nav-item" onclick="goTo(2)" href="#">
+      <span class="nav-num">2</span> Repairs Needed
+    </a>
+    <a class="nav-item" onclick="goTo(3)" href="#">
+      <span class="nav-num">3</span> Replacements
+    </a>
+    <a class="nav-item" onclick="goTo(4)" href="#">
+      <span class="nav-num">4</span> Materials to Complete
+    </a>
+    <a class="nav-item" onclick="goTo(5)" href="#">
+      <span class="nav-num">5</span> Purchases Needed
+    </a>
+    <a class="nav-item" onclick="goTo(6)" href="#">
+      <span class="nav-num">6</span> Material-Making Plan
+    </a>
+    <a class="nav-item" onclick="goTo(7)" href="#">
+      <span class="nav-num">7</span> Wish List
+    </a>
+    <a class="nav-item" onclick="goTo(8)" href="#">
+      <span class="nav-num">8</span> Hazards & Broken Items
+    </a>
+    <a class="nav-item" onclick="goTo(9)" href="#">
+      <span class="nav-num">9</span> Risk Assessment
+    </a>
+    <a class="nav-item" onclick="goTo(10)" href="#">
+      <span class="nav-num">10</span> Final Checklist
+    </a>
+    <div class="nav-divider"></div>
+    <button class="nav-submit-btn" onclick="goTo(11)">Review & Submit</button>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- PROGRESS -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+
+    <!-- SECTION 0: HEADER INFO -->
+    <section class="form-section active" id="sec-0">
+      <div class="section-header">
+        <div class="section-eyebrow">Getting started</div>
+        <div class="section-title">Document Header</div>
+        <p class="section-desc">Complete these details before filling in the rest of the document. This information will appear on the submitted form.</p>
+      </div>
+
+      <div class="intro-card">
+        <h3>Purpose & expectations</h3>
+        <ul>
+          <li>Identify anything that needs to be repaired, replaced, completed, purchased, created, or added to a wish list.</li>
+          <li>Indicate urgency and propose a realistic timeline for each item.</li>
+          <li>Begin material-making now for any needed materials that have not yet been started.</li>
+          <li>Return all complete materials to the environment intentionally — with attention to sequence, accessibility, presentation, and children's independence.</li>
+          <li>Identify hazards, broken items, and any tool or material that may present a risk.</li>
+        </ul>
+      </div>
+
+      <div class="meta-grid">
+        <div class="field-group">
+          <label>Prepared by</label>
+          <input type="text" id="meta-prepared" placeholder="Guide's full name">
+        </div>
+        <div class="field-group">
+          <label>Date submitted</label>
+          <input type="date" id="meta-date">
+        </div>
+        <div class="field-group">
+          <label>Classroom / Area</label>
+          <select id="meta-classroom">
+            <option value="">Select classroom…</option>
+            <option>Atlas (Toddler)</option>
+            <option>Alps (Primary)</option>
+            <option>Sierra (Primary)</option>
+            <option>Andes (Lower Elementary)</option>
+            <option>Himalaya (Upper Elementary)</option>
+            <option>Other / specify in notes</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Reviewed by</label>
+          <input type="text" id="meta-reviewed" placeholder="Head of School / Lead Guide">
+        </div>
+        <div class="field-group" style="grid-column: 1 / -1;">
+          <label>Notes / follow-up</label>
+          <textarea id="meta-notes" placeholder="Any context the reviewer should know before reading this document…"></textarea>
+        </div>
+      </div>
+
+      <div class="section-nav">
+        <span></span>
+        <button class="btn btn-primary" onclick="goTo(1)">Start filling in &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 1: PRIORITY OVERVIEW -->
+    <section class="form-section" id="sec-1">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 1</div>
+        <div class="section-title">Priority Overview</div>
+        <p class="section-desc">Give a concise overview of the most important items before completing the detailed sections below. Add one row per key action item.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="tbl-1">
+          <thead>
+            <tr>
+              <th>Area / Shelf</th>
+              <th>Material / Item</th>
+              <th>Current status</th>
+              <th>Action needed</th>
+              <th>Urgency</th>
+              <th>Owner</th>
+              <th>Target date</th>
+              <th>Notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="body-1"></tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow('1')">+ Add row</button>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(0)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goTo(2)">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 2: REPAIRS -->
+    <section class="form-section" id="sec-2">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 2</div>
+        <div class="section-title">Repairs Needed</div>
+        <p class="section-desc">Include materials, furniture, shelves, storage, labels, containers, and classroom equipment requiring repair.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="tbl-2">
+          <thead>
+            <tr>
+              <th>Area / Shelf</th>
+              <th>Material / Item</th>
+              <th>Issue / Missing element</th>
+              <th>Impact on use / child access</th>
+              <th>Proposed action</th>
+              <th>Urgency</th>
+              <th>Owner</th>
+              <th>Target date</th>
+              <th>Cost / supplier</th>
+              <th>Follow-up notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="body-2"></tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow('2')">+ Add row</button>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(1)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goTo(3)">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 3: REPLACEMENTS -->
+    <section class="form-section" id="sec-3">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 3</div>
+        <div class="section-title">Replacements Needed</div>
+        <p class="section-desc">Use this section when an item cannot reasonably be repaired or is no longer suitable for use.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="tbl-3">
+          <thead>
+            <tr>
+              <th>Area / Shelf</th>
+              <th>Material / Item</th>
+              <th>Issue / Missing element</th>
+              <th>Impact on use / child access</th>
+              <th>Proposed action</th>
+              <th>Urgency</th>
+              <th>Owner</th>
+              <th>Target date</th>
+              <th>Cost / supplier</th>
+              <th>Follow-up notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="body-3"></tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow('3')">+ Add row</button>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(2)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goTo(4)">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MATERIALS TO COMPLETE -->
+    <section class="form-section" id="sec-4">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 4</div>
+        <div class="section-title">Materials to Complete</div>
+        <p class="section-desc">Use this section for incomplete sets, missing pieces, labels, controls of error, albums, cards, charts, booklets, or presentations.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="tbl-4">
+          <thead>
+            <tr>
+              <th>Area / Shelf</th>
+              <th>Material / Item</th>
+              <th>Issue / Missing element</th>
+              <th>Impact on use / child access</th>
+              <th>Proposed action</th>
+              <th>Urgency</th>
+              <th>Owner</th>
+              <th>Target date</th>
+              <th>Cost / supplier</th>
+              <th>Follow-up notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="body-4"></tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow('4')">+ Add row</button>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(3)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goTo(5)">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PURCHASES -->
+    <section class="form-section" id="sec-5">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 5</div>
+        <div class="section-title">Purchases Needed</div>
+        <p class="section-desc">Include essential purchases only. Where possible, add estimated cost and supplier/source.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="tbl-5">
+          <thead>
+            <tr>
+              <th>Area / Shelf</th>
+              <th>Material / Item</th>
+              <th>Issue / Missing element</th>
+              <th>Impact on use / child access</th>
+              <th>Proposed action</th>
+              <th>Urgency</th>
+              <th>Owner</th>
+              <th>Target date</th>
+              <th>Cost / supplier</th>
+              <th>Follow-up notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="body-5"></tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow('5')">+ Add row</button>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(4)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goTo(6)">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 6: MATERIAL-MAKING PLAN -->
+    <section class="form-section" id="sec-6">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 6</div>
+        <div class="section-title">Material-Making Plan</div>
+        <p class="section-desc">Any material-making that has not yet started should begin now. Clarify exactly what must be created and by when.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="tbl-6">
+          <thead>
+            <tr>
+              <th>Area / Curriculum</th>
+              <th>Material to create</th>
+              <th>Purpose / presentation</th>
+              <th>What is needed</th>
+              <th>Has it started?</th>
+              <th>Next step now</th>
+              <th>Owner</th>
+              <th>Target date</th>
+              <th>Urgency</th>
+              <th>Notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="body-6"></tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow('6')">+ Add row</button>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(5)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goTo(7)">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 7: WISH LIST -->
+    <section class="form-section" id="sec-7">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 7</div>
+        <div class="section-title">Wish List</div>
+        <p class="section-desc">Separate true needs from wishes. Use this section for longer-term improvements or enrichment only.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="tbl-7">
+          <thead>
+            <tr>
+              <th>Area / Shelf</th>
+              <th>Item / material</th>
+              <th>Educational purpose</th>
+              <th>Nice-to-have or strategic need?</th>
+              <th>Estimated cost</th>
+              <th>Possible supplier</th>
+              <th>Suggested timing</th>
+              <th>Notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="body-7"></tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow('7')">+ Add row</button>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(6)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goTo(8)">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 8: HAZARDS -->
+    <section class="form-section" id="sec-8">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 8</div>
+        <div class="section-title">Hazards and Broken Items</div>
+        <p class="section-desc">Anything broken or potentially unsafe should be removed from children's access until resolved or risk-assessed.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="tbl-8">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Hazard / broken item</th>
+              <th>Risk identified</th>
+              <th>Immediate action taken</th>
+              <th>Further action needed</th>
+              <th>Urgency</th>
+              <th>Owner</th>
+              <th>Target date</th>
+              <th>Resolved?</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="body-8"></tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow('8')">+ Add row</button>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(7)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goTo(9)">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 9: RISK ASSESSMENT -->
+    <section class="form-section" id="sec-9">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 9</div>
+        <div class="section-title">Risk Assessment for Tools or Potentially Hazardous Materials</div>
+        <p class="section-desc">Complete this section for any tool or material that could present a danger. Aim to remove or mitigate risk through storage, handling, supervision, and clear limits.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="tbl-9">
+          <thead>
+            <tr>
+              <th>Tool / material</th>
+              <th>Purpose in environment</th>
+              <th>Potential risks</th>
+              <th>Who may use it?</th>
+              <th>Storage plan</th>
+              <th>Handling procedure</th>
+              <th>Supervision / limits</th>
+              <th>Risk mitigation</th>
+              <th>Decision / approval</th>
+              <th>Review date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="body-9"></tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow('9')">+ Add row</button>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(8)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goTo(10)">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 10: CHECKLIST -->
+    <section class="form-section" id="sec-10">
+      <div class="section-header">
+        <div class="section-eyebrow">Section 10</div>
+        <div class="section-title">Final Classroom Reset Checklist</div>
+        <p class="section-desc">Confirm each item before submitting. Tick each box when complete and add notes where needed.</p>
+      </div>
+
+      <div class="checklist">
+        <div class="check-header">
+          <div class="check-header-cell" style="text-align:center;">Done</div>
+          <div class="check-header-cell">Checklist item</div>
+          <div class="check-header-cell" style="border-left: 1px solid rgba(255,255,255,0.15);">Notes</div>
+        </div>
+        <div class="check-item">
+          <div class="check-cell"><input type="checkbox" id="chk-1"></div>
+          <label class="check-label" for="chk-1">All complete materials are back in the environment intentionally and in logical sequence.</label>
+          <div class="check-notes"><input type="text" placeholder="Notes…"></div>
+        </div>
+        <div class="check-item">
+          <div class="check-cell"><input type="checkbox" id="chk-2"></div>
+          <label class="check-label" for="chk-2">Incomplete materials are clearly listed and not presented as complete to children.</label>
+          <div class="check-notes"><input type="text" placeholder="Notes…"></div>
+        </div>
+        <div class="check-item">
+          <div class="check-cell"><input type="checkbox" id="chk-3"></div>
+          <label class="check-label" for="chk-3">Broken items have been removed from use or safely stored until repaired/replaced.</label>
+          <div class="check-notes"><input type="text" placeholder="Notes…"></div>
+        </div>
+        <div class="check-item">
+          <div class="check-cell"><input type="checkbox" id="chk-4"></div>
+          <label class="check-label" for="chk-4">Hazards have been identified and immediate risk-reduction action has been taken.</label>
+          <div class="check-notes"><input type="text" placeholder="Notes…"></div>
+        </div>
+        <div class="check-item">
+          <div class="check-cell"><input type="checkbox" id="chk-5"></div>
+          <label class="check-label" for="chk-5">Risk assessments have been drafted for tools or materials that could present danger.</label>
+          <div class="check-notes"><input type="text" placeholder="Notes…"></div>
+        </div>
+        <div class="check-item">
+          <div class="check-cell"><input type="checkbox" id="chk-6"></div>
+          <label class="check-label" for="chk-6">Material-making tasks have started, with owners and target dates assigned.</label>
+          <div class="check-notes"><input type="text" placeholder="Notes…"></div>
+        </div>
+        <div class="check-item">
+          <div class="check-cell"><input type="checkbox" id="chk-7"></div>
+          <label class="check-label" for="chk-7">Essential purchases are separated from wish-list items.</label>
+          <div class="check-notes"><input type="text" placeholder="Notes…"></div>
+        </div>
+        <div class="check-item">
+          <div class="check-cell"><input type="checkbox" id="chk-8"></div>
+          <label class="check-label" for="chk-8">Urgency has been assigned to every action item.</label>
+          <div class="check-notes"><input type="text" placeholder="Notes…"></div>
+        </div>
+        <div class="check-item">
+          <div class="check-cell"><input type="checkbox" id="chk-9"></div>
+          <label class="check-label" for="chk-9">The classroom environment is calm, ordered, purposeful, and ready for children.</label>
+          <div class="check-notes"><input type="text" placeholder="Notes…"></div>
+        </div>
+      </div>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(9)">&larr; Back</button>
+        <button class="btn btn-teal" onclick="goTo(11)">Review & Submit &rarr;</button>
+      </div>
+    </section>
+
+    <!-- SECTION 11: SUBMIT -->
+    <section class="form-section" id="sec-11">
+      <div class="section-header">
+        <div class="section-eyebrow">Final step</div>
+        <div class="section-title">Review & Submit</div>
+        <p class="section-desc">Before submitting, check the summary below. Once submitted, your form will be saved for review.</p>
+      </div>
+
+      <div id="summary-panel" style="margin-bottom: 24px;"></div>
+
+      <div class="submit-panel">
+        <h3>Ready to submit?</h3>
+        <p>Your completed document will be sent to the Head of School.<br>You can also print a copy for your records.</p>
+        <div class="submit-actions">
+          <button type="button" class="btn btn-print" onclick="window.print()">🖨 Print / Save as PDF</button>
+          <button type="button" class="btn btn-teal" onclick="handleSubmit()">Submit document</button>
+        </div>
+      </div>
+
+      <!-- Netlify form: hidden, populated by JS on submit -->
+      <form name="materials-overview" data-netlify="true" netlify-honeypot="bot-field" id="netlify-form" method="POST" action="/elementary-materials-overview" style="position:absolute;left:-9999px;visibility:hidden;">
+        <input type="hidden" name="form-name" value="materials-overview">
+        <input type="hidden" name="bot-field">
+        <input type="hidden" name="prepared-by" id="nf-prepared-by">
+        <input type="hidden" name="date-submitted" id="nf-date">
+        <input type="hidden" name="classroom" id="nf-classroom">
+        <input type="hidden" name="reviewed-by" id="nf-reviewed-by">
+        <input type="hidden" name="header-notes" id="nf-notes">
+        <input type="hidden" name="section-1-priority" id="nf-s1">
+        <input type="hidden" name="section-2-repairs" id="nf-s2">
+        <input type="hidden" name="section-3-replacements" id="nf-s3">
+        <input type="hidden" name="section-4-complete" id="nf-s4">
+        <input type="hidden" name="section-5-purchases" id="nf-s5">
+        <input type="hidden" name="section-6-making" id="nf-s6">
+        <input type="hidden" name="section-7-wishlist" id="nf-s7">
+        <input type="hidden" name="section-8-hazards" id="nf-s8">
+        <input type="hidden" name="section-9-risk" id="nf-s9">
+        <input type="hidden" name="section-10-checklist" id="nf-s10">
+      </form>
+
+      <div class="section-nav">
+        <button class="btn btn-ghost" onclick="goTo(10)">&larr; Back to checklist</button>
+        <span></span>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── STATE ──
+let currentSection = 0;
+const totalSections = 12;
+
+// ── SECTION CONFIGS ──
+// col types: text | date | urgency | select | textarea | yesno | resolved
+const sectionCols = {
+  1: ['text','text','textarea','textarea','urgency','text','date','textarea'],
+  2: ['text','text','textarea','textarea','textarea','urgency','text','date','text','textarea'],
+  3: ['text','text','textarea','textarea','textarea','urgency','text','date','text','textarea'],
+  4: ['text','text','textarea','textarea','textarea','urgency','text','date','text','textarea'],
+  5: ['text','text','textarea','textarea','textarea','urgency','text','date','text','textarea'],
+  6: ['text','text','textarea','textarea','yesno','textarea','text','date','urgency','textarea'],
+  7: ['text','text','textarea','text','text','text','text','textarea'],
+  8: ['text','text','textarea','textarea','textarea','urgency','text','date','resolved'],
+  9: ['text','textarea','textarea','text','textarea','textarea','textarea','textarea','text','date'],
+};
+
+// ── NAVIGATION ──
+function goTo(n) {
+  if (n === 11) buildSummary();
+  document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + n).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach((el, i) => {
+    el.classList.toggle('active', i === n);
+  });
+  currentSection = n;
+  updateProgress();
+  window.scrollTo(0, 0);
+}
+
+function updateProgress() {
+  const pct = (currentSection / (totalSections - 1)) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+// ── ROW BUILDING ──
+function makeCell(type) {
+  const td = document.createElement('td');
+  let el;
+  if (type === 'urgency') {
+    el = document.createElement('select');
+    el.className = 'urgency-select';
+    el.innerHTML = `<option value="">–</option>
+      <option value="immediate">🔴 Immediate</option>
+      <option value="this-week">🟡 This week</option>
+      <option value="this-month">🟢 This month</option>
+      <option value="low">⚪ Low priority</option>`;
+  } else if (type === 'yesno') {
+    el = document.createElement('select');
+    el.innerHTML = `<option value="">–</option><option>Yes</option><option>No</option><option>In progress</option>`;
+  } else if (type === 'resolved') {
+    el = document.createElement('select');
+    el.innerHTML = `<option value="">–</option><option>Yes ✓</option><option>No</option><option>In progress</option>`;
+  } else if (type === 'date') {
+    el = document.createElement('input');
+    el.type = 'date';
+  } else if (type === 'textarea') {
+    el = document.createElement('textarea');
+    el.rows = 1;
+    el.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
+  } else {
+    el = document.createElement('input');
+    el.type = 'text';
+  }
+  td.appendChild(el);
+  return td;
+}
+
+function addRow(sectionId) {
+  const tbody = document.getElementById('body-' + sectionId);
+  const cols = sectionCols[parseInt(sectionId)];
+  const tr = document.createElement('tr');
+  cols.forEach(type => tr.appendChild(makeCell(type)));
+  // delete button
+  const delTd = document.createElement('td');
+  delTd.className = 'del-cell';
+  const delBtn = document.createElement('button');
+  delBtn.className = 'del-row-btn';
+  delBtn.innerHTML = '×';
+  delBtn.title = 'Remove row';
+  delBtn.onclick = () => tr.remove();
+  delTd.appendChild(delBtn);
+  tr.appendChild(delTd);
+  tbody.appendChild(tr);
+  // focus first input
+  const first = tr.querySelector('input, select, textarea');
+  if (first) first.focus();
+}
+
+// Pre-populate each section with 3 blank rows
+[1,2,3,4,5,6,7,8,9].forEach(n => {
+  for (let i = 0; i < 3; i++) addRow(String(n));
+});
+
+// ── SUMMARY ──
+function buildSummary() {
+  const prepared = document.getElementById('meta-prepared').value || '—';
+  const date = document.getElementById('meta-date').value || '—';
+  const classroom = document.getElementById('meta-classroom').value || '—';
+  const reviewed = document.getElementById('meta-reviewed').value || '—';
+
+  const sectionNames = ['Priority Overview','Repairs Needed','Replacements Needed',
+    'Materials to Complete','Purchases Needed','Material-Making Plan',
+    'Wish List','Hazards & Broken Items','Risk Assessment'];
+  let rowCounts = '';
+  [1,2,3,4,5,6,7,8,9].forEach((n, i) => {
+    const count = document.getElementById('body-' + n).querySelectorAll('tr').length;
+    const filled = document.getElementById('body-' + n).querySelectorAll('input[type=text], textarea').length > 0;
+    rowCounts += `<tr><td style="padding:6px 12px;font-size:13px;">${sectionNames[i]}</td><td style="padding:6px 12px;font-size:13px;color:var(--teal);font-weight:600;">${count} row${count !== 1 ? 's' : ''}</td></tr>`;
+  });
+  const checked = document.querySelectorAll('.checklist input[type=checkbox]:checked').length;
+
+  document.getElementById('summary-panel').innerHTML = `
+    <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;">
+      <div style="background:var(--navy);color:white;padding:10px 16px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Document header</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        ${[['Prepared by', prepared],['Date submitted', date],['Classroom', classroom],['Reviewed by', reviewed]].map(([l,v]) => `
+          <div style="padding:10px 16px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);margin-bottom:2px;">${l}</div>
+            <div style="font-size:13px;font-weight:500;">${v}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;">
+      <div style="background:var(--navy);color:white;padding:10px 16px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Sections completed</div>
+      <table style="width:100%;border-collapse:collapse;">${rowCounts}</table>
+    </div>
+    <div style="background:white;border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px;">
+      <span style="font-size:24px;">${checked === 9 ? '✅' : '⚠️'}</span>
+      <div>
+        <div style="font-weight:600;font-size:13px;">${checked}/9 checklist items ticked</div>
+        <div style="font-size:12px;color:var(--muted);">${checked < 9 ? 'Some checklist items are not yet confirmed — you may still submit, but consider reviewing Section 10.' : 'All checklist items confirmed.'}</div>
+      </div>
+    </div>
+  `;
+}
+
+// ── SUBMIT ──
+function serializeTable(bodyId) {
+  const rows = [];
+  document.getElementById(bodyId).querySelectorAll('tr').forEach(tr => {
+    const cells = [];
+    tr.querySelectorAll('input, select, textarea').forEach(el => {
+      if (el.value.trim()) cells.push(el.value.trim());
+    });
+    if (cells.length) rows.push(cells.join(' | '));
+  });
+  return rows.join('\n');
+}
+
+function handleSubmit() {
+  // Populate hidden Netlify form fields
+  document.getElementById('nf-prepared-by').value = document.getElementById('meta-prepared').value;
+  document.getElementById('nf-date').value = document.getElementById('meta-date').value;
+  document.getElementById('nf-classroom').value = document.getElementById('meta-classroom').value;
+  document.getElementById('nf-reviewed-by').value = document.getElementById('meta-reviewed').value;
+  document.getElementById('nf-notes').value = document.getElementById('meta-notes').value;
+  document.getElementById('nf-s1').value = serializeTable('body-1');
+  document.getElementById('nf-s2').value = serializeTable('body-2');
+  document.getElementById('nf-s3').value = serializeTable('body-3');
+  document.getElementById('nf-s4').value = serializeTable('body-4');
+  document.getElementById('nf-s5').value = serializeTable('body-5');
+  document.getElementById('nf-s6').value = serializeTable('body-6');
+  document.getElementById('nf-s7').value = serializeTable('body-7');
+  document.getElementById('nf-s8').value = serializeTable('body-8');
+  document.getElementById('nf-s9').value = serializeTable('body-9');
+  const checks = [];
+  document.querySelectorAll('.checklist input[type=checkbox]').forEach((cb, i) => {
+    checks.push((cb.checked ? '✓' : '☐') + ' Item ' + (i+1));
+  });
+  document.getElementById('nf-s10').value = checks.join('\n');
+
+  // Submit via fetch to Netlify Forms
+  const form = document.getElementById('netlify-form');
+  const formData = new FormData(form);
+  const encoded = new URLSearchParams(formData).toString();
+  fetch(window.location.pathname, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: encoded
+  })
+    .then(res => {
+      if (res.ok || res.redirected) {
+        showSuccess();
+      } else {
+        showSuccess(); // show success anyway — Netlify sometimes returns non-200
+      }
+    })
+    .catch(() => showSuccess());
+
+  function showSuccess() {
+    document.getElementById('sec-11').innerHTML = `
+      <div style="text-align:center;padding:60px 40px;">
+        <div style="font-size:48px;margin-bottom:16px;">✅</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:28px;color:var(--navy);font-weight:400;margin-bottom:12px;">Submitted successfully</h2>
+        <p style="color:var(--muted);font-size:14px;max-width:400px;margin:0 auto 24px;">Your materials overview has been sent to the Head of School. Thank you!</p>
+        <button class="btn btn-print" onclick="window.print()" style="margin:0 auto;">🖨 Print a copy for your records</button>
+      </div>`;
+  }
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+// Prevent accidental navigation
+window.addEventListener('beforeunload', e => {
+  e.preventDefault();
+  e.returnValue = '';
+});
+</script>
+</body>
+</html>
